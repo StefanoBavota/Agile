@@ -30,6 +30,7 @@
                 </ul>
                 <span class="navbar-text">
                     <a class="" href="<?php echo ROOT_URL; ?>auth?page=login">Login</a>
+                    <a class="" href="<?php echo ROOT_URL; ?>auth?page=logout">Logout</a>
                 </span>
             </div>
         </div>

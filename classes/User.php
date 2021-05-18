@@ -1,8 +1,10 @@
 <?php
 
-class UserManager extends DBManager {
+class UserManager extends DBManager
+{
 
-  public function __construct() {
+  public function __construct()
+  {
     parent::__construct();
     $this->tableName = 'user';
     $this->columns = ['id', 'email', 'password', 'user_type_id'];
@@ -10,24 +12,32 @@ class UserManager extends DBManager {
 
   // Public Methods
 
-  public function passwordsMatch($password, $confirm_password) {
+  public function passwordMatch($password, $confirm_password)
+  {
     return $password == $confirm_password;
   }
 
-  public function register($email, $password) {
+  public function register($nome, $cognome, $email, $password)
+  {
+
     $result = $this->db->query("SELECT * FROM user WHERE email = '$email'");
     if (count($result) > 0) {
       return false;
     }
+
     $userId = $this->create([
+      'nome' => $nome,
+      'cognome' => $cognome,
       'email' => $email,
       'password' => md5($password),
       'user_type_id' => 2
     ]);
+
     return $userId;
   }
 
-  public function login($email, $password) {
+  public function login($email, $password)
+  {
     $result = $this->db->query("
       SELECT *
       FROM user
@@ -35,7 +45,7 @@ class UserManager extends DBManager {
       AND password = MD5('$password');
     ");
 
-    if (count($result) > 0 ) {
+    if (count($result) > 0) {
       $user = (object) $result[0];
 
       $this->_setUser($user);
@@ -46,7 +56,8 @@ class UserManager extends DBManager {
   }
 
   // Private Methods
-  private function _setUser($user) {    
+  private function _setUser($user)
+  {
     $userToStore = (object) [
       'id' => $user->id,
       'email' => $user->email,
