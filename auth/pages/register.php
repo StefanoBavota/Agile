@@ -23,16 +23,13 @@ if (isset($_POST['register'])) {
 
     $userMgr = new UserManager();
     if ($userMgr->passwordMatch($password, $confirm_password)) {
-        if ($email != '' && $nome != '' && $cognome != '' && $password != '' && $confirm_password != '') {
+        $result = $userMgr->register($nome, $cognome, $email, $password);
 
-            $result = $userMgr->register($nome, $cognome, $email, $password);
-
-            if ($result > 0) {
-                echo '<script>location.href="' . ROOT_URL . 'auth?page=login"</script>';
-                exit;
-            } else {
-                $errMsg = 'Mail già utilizzata...';
-            }
+        if ($result > 0) {
+            echo '<script>location.href="' . ROOT_URL . 'auth?page=login"</script>';
+            exit;
+        } else {
+            $errMsg = 'Mail già utilizzata...';
         }
     } else {
         $errMsg = "Le password non corrsipondono...";
