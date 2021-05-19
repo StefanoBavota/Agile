@@ -36,35 +36,8 @@ if (isset($_POST['register'])) {
     }
 }
 
-?>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<div class="mt-4">
-    <h2>Registrazione</h2>
-</div>
-
-<form method="post">
-    <div class="form-group">
-        <label for="nome">Nome</label>
-        <input name="nome" id="nome" type="text" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="cognome">Cognome</label>
-        <input name="cognome" id="cognome" type="text" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input name="email" id="email" type="text" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input name="password" id="password" type="password" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="confirm_password">Conferma Password</label>
-        <input name="confirm_password" id="confirm_password" type="password" class="form-control" required>
-    </div>
-
-    <button class="btn btn-primary mb-5 mt-3" type="submit" name="register">Register</button>
-</form>
-
-Hai già un account? <a class="underline scuro" href="<?php echo ROOT_URL; ?>auth?page=login">Effettua il Login! &raquo;</a>
+echo $twig->render('register.html', [
+]);
