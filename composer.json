@@ -1,4 +1,13 @@
 {
+    "name": "stefano/agile",
+    "authors": [
+        {
+            "name": "StefanoBavota",
+            "email": "stefano.bavota@hotmail.com"
+        }
+    ],
+    "description": "",
+    "license": "proprietary",
     "require": {
         "twig/twig": "3.0"
     },
