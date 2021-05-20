@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 //use App\Ciao;
 //require_once __DIR__ . '/../src/Ciao.php';
 
-class ProvaTest extends TestCase
+class DBConnectionnTest extends TestCase
 {
     public function test_prova()
     {
