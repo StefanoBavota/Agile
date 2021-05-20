@@ -8,6 +8,10 @@
     ],
     "description": "",
     "license": "proprietary",
+    "scripts": {
+        "test-locale": "./vendor/bin/phpunit -c phpunit-locale.xml --coverage-html ./html",
+        "test-github": "./vendor/bin/phpunit -c phpunit-github.xml"
+    },
     "require": {
         "twig/twig": "3.0"
     },

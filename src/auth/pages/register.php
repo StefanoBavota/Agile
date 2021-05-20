@@ -4,7 +4,7 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
-require_once('../vendor/autoload.php');
+require_once(AUTOLOAD_PATH);
 
 $errMsg = '';
 

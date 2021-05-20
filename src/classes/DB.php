@@ -12,7 +12,7 @@ class DB {
       echo 'Failed to connect to MySql ' . mysqli_connect_errno();
       die;
     }
-    $this->pdo = new PDO('mysql:dbname='. DB_NAME .';host=' . DB_HOST, DB_USER, DB_PASS);
+    $this->pdo = new PDO('mysql:dbname='. DB_NAME .';host=' . DB_HOSTT, DB_USER, DB_PASS);
     $this->pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
   }
 

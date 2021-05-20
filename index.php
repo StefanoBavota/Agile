@@ -1,3 +1,3 @@
 <?php
-    header('Location: public');
+    header('Location: src/public');
     exit;
