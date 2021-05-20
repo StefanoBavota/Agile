@@ -24,12 +24,6 @@ class DBConnectionnTest extends TestCase
     public function test_db_connection()
     {
         $connection = new PDO("mysql:host={$_ENV['DB_HOST']};port={$_ENV['DB_PORT']};dbname={$_ENV['DB_DATABASE']}", $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
-        // TEST DATABASE
-        // $user = ['name' => 'Mario'];
-        // chiami il metodo tuo che fa la registrazione
-        // prendi la roba dal database
-        // $userFromDb = "SELECT * FROM users WHERE name = " . $user['name'] . ";";
-        // $this->assertEquals($user, $userFromDb);
         $this->assertNotEmpty($connection);
     }
 }

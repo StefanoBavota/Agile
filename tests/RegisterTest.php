@@ -8,10 +8,11 @@ use PHPUnit\Framework\TestCase;
 //require_once __DIR__ . '../src/classes/User.php';
 //require_once __DIR__ . '../src/classes/DB.php';
 
-class RegisterTest extends TestCase {
+class RegisterTest extends TestCase
+{
     public function test_prova()
     {
-       $this->assertEquals(1, 1);
+        $this->assertEquals(1, 1);
     }
 
     public function setUp(): void
@@ -22,6 +23,26 @@ class RegisterTest extends TestCase {
         $connection->query("CREATE DATABASE {$_ENV['DB_DATABASE']};");
     }
 
+    public function test_create()
+    {
+        $userMgr = new UserManager;
+        $user = $userMgr->create([
+            'nome' => 'Francesco',
+            'cognome' => 'Bianchi',
+            'email' => 'francescobianchi@test.it',
+            'password' => md5('password'),
+            'user_type_id' => 2
+        ]);
+        $userFromDb = [
+            'nome' => 'Francesco',
+            'cognome' => 'Bianchi',
+            'email' => 'francescobianchi@test.it',
+            'password' => md5('password'),
+            'user_type_id' => 2
+        ];
+        $this->assertEquals($user, $userFromDb);
+    }
+
     public function test_register()
     {
         // TEST REGISTER
@@ -30,4 +51,11 @@ class RegisterTest extends TestCase {
         $userFromDb = "SELECT * FROM user WHERE email = 'mariorossi@test.it'";
         $this->assertEquals($user, $userFromDb);
     }
+
+    // TEST DATABASE
+    // $user = ['name' => 'Mario'];
+    // chiami il metodo tuo che fa la registrazione
+    // prendi la roba dal database
+    // $userFromDb = "SELECT * FROM users WHERE name = " . $user['name'] . ";";
+    // $this->assertEquals($user, $userFromDb);
 }

@@ -23,7 +23,7 @@
         <env name="DB_HOST" value="localhost" force="true" />
         <env name="DB_PORT" value="3306" force="true" />
         <env name="DB_USERNAME" value="root" force="true" />
-        <env name="DB_DATABASE" value="agile" force="true" />
+        <env name="DB_DATABASE" value="agile_test" force="true" />
         <env name="DB_PASSWORD" value="" force="true" />
     </php>
 </phpunit>
