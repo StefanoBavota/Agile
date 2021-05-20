@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 //use App\Ciao;
 //require_once __DIR__ . '/../src/Ciao.php';
+//"test-locale": "./vendor/bin/phpunit -c phpunit-locale.xml --coverage-html ./html",
 
 class DBConnectionnTest extends TestCase
 {

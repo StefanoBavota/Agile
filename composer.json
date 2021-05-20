@@ -9,7 +9,7 @@
     "description": "",
     "license": "proprietary",
     "scripts": {
-        "test-locale": "./vendor/bin/phpunit -c phpunit-locale.xml --coverage-html ./html",
+        "test-locale": "./vendor/bin/phpunit -c phpunit-locale.xml ./tests",
         "test-github": "./vendor/bin/phpunit -c phpunit-github.xml"
     },
     "config": {
