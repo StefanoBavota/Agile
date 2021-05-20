@@ -31,7 +31,7 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Create tables
-      run: mysql -u root --password=password test < agile_test.sql
+      run: composer run-script migrate-test
 
     - name: Run test suite
       run: composer run-script test-github
