@@ -1,7 +1,7 @@
 <?php
 
 $alertMsg = '';
-$conn = mysqli_connect(DB_HOSTT, DB_USER, DB_PASS, DB_NAME);
+// $conn = mysqli_connect(DB_HOSTT, DB_USER, DB_PASS, DB_NAME);
 
 $loggedInUser = null;
 

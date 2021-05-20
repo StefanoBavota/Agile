@@ -1,5 +1,7 @@
 <?php
 
+use App\Classes\UserManager;
+
 if (!defined('ROOT_URL')) {
     die;
 }

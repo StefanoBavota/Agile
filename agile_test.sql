@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `Nome` varchar(50) NOT NULL,
-  `Cognome` varchar(50) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `cognome` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `user_type_id` int(11) NOT NULL
@@ -39,10 +39,6 @@ CREATE TABLE `user` (
 --
 -- Dump dei dati per la tabella `user`
 --
-
-INSERT INTO `user` (`id`, `Nome`, `Cognome`, `email`, `password`, `user_type_id`) VALUES
-(1, 'stefano', 'bavota', 'cristianobombardo@hotmail.it', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
-(3, 'Stefano', 'Bavota', 'test@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2);
 
 -- --------------------------------------------------------
 

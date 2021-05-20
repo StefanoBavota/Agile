@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Classes;
+require_once __DIR__ . '/DBManager.php';
+
 class UserManager extends DBManager
 {
 
@@ -21,7 +24,7 @@ class UserManager extends DBManager
   {
 
     $result = $this->db->query("SELECT * FROM user WHERE email = '$email'");
-    if (count($result) > 0) {
+    if (count($result) != 0) {
       return false;
     }
 
@@ -65,4 +68,11 @@ class UserManager extends DBManager
     ];
     $_SESSION['user'] = $userToStore;
   }
+
+  public function getUserById($id) {      
+      if ( empty($id) || !$id || !isset($id) ) return null;
+      $result = $this->db->query("SELECT * FROM user WHERE id = $id;");
+      return $result[0] ?? null;
+  }
+
 }

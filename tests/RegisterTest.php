@@ -1,12 +1,10 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use App\Classes\UserManager;
 
-//use App\Ciao;
-//use UserManager;
-
-//require_once __DIR__ . '../src/classes/User.php';
-//require_once __DIR__ . '../src/classes/DB.php';
+require_once __DIR__ . '/../src/classes/UserManager.php';
+require_once __DIR__ . '/../src/inc/init.php';
 
 class RegisterTest extends TestCase
 {
@@ -19,37 +17,43 @@ class RegisterTest extends TestCase
     {
         // wipe db manually
         $connection = new PDO("mysql:host={$_ENV['DB_HOST']};port={$_ENV['DB_PORT']};dbname={$_ENV['DB_DATABASE']}", $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
-        $connection->query("DROP DATABASE {$_ENV['DB_DATABASE']};");
-        $connection->query("CREATE DATABASE {$_ENV['DB_DATABASE']};");
+        $connection->query("use information_schema");
+        $tables = $connection->query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA = '" . $_ENV['DB_DATABASE'] . "';");
+        $connection->query("use {$_ENV['DB_DATABASE']}");
+        foreach ( $tables->fetchAll(PDO::FETCH_ASSOC) as $table ) {
+            $connection->query("TRUNCATE " . $table['TABLE_NAME'] . ";");
+        } 
     }
-
+    
     public function test_create()
     {
         $userMgr = new UserManager;
-        $user = $userMgr->create([
-            'nome' => 'Francesco',
-            'cognome' => 'Bianchi',
-            'email' => 'francescobianchi@test.it',
-            'password' => md5('password'),
-            'user_type_id' => 2
-        ]);
-        $userFromDb = [
+        $userData = [
             'nome' => 'Francesco',
             'cognome' => 'Bianchi',
             'email' => 'francescobianchi@test.it',
             'password' => md5('password'),
             'user_type_id' => 2
         ];
-        $this->assertEquals($user, $userFromDb);
+        // created user
+        $user = $userMgr->create($userData);
+        // remove the user id assigned by dbms
+        unset($user['id']);
+        $this->assertEquals($user, $userData);
     }
 
     public function test_register()
     {
         // TEST REGISTER
         $userMgr = new UserManager;
-        $user = $userMgr->register('Mario', 'Rossi', 'mariorossi@test.it', md5('password'));
-        $userFromDb = "SELECT * FROM user WHERE email = 'mariorossi@test.it'";
-        $this->assertEquals($user, $userFromDb);
+        $User = ['nome' => 'Mario', 'cognome' => 'Rossi', 'email' => 'mariorossi@test.it', 'password' => 'password'];
+        $createdUser = $userMgr->register($User['nome'], $User['cognome'], $User['email'], $User['password']);
+        $dbUser = $userMgr->getUserById($createdUser['id']);
+        // processing data pre assertion
+        unset($dbUser['id']);
+        unset($dbUser['user_type_id']);
+        $User['password'] = md5($User['password']);
+        $this->assertEquals($User, $dbUser);
     }
 
     // TEST DATABASE
