@@ -12,6 +12,11 @@
         "test-locale": "./vendor/bin/phpunit -c phpunit-locale.xml --coverage-html ./html",
         "test-github": "./vendor/bin/phpunit -c phpunit-github.xml"
     },
+    "config": {
+        "platform": {
+            "php": "7.3"
+        }
+    },
     "require": {
         "twig/twig": "3.0"
     },
