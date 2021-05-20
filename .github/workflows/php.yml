@@ -29,9 +29,9 @@ jobs:
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
-
+q
     - name: Create tables
-      run: mysql -u root -p password test < agile_test.sql
+      run: mysql -u root --password=password test < agile_test.sql
 
     - name: Run test suite
       run: composer run-script test-github
