@@ -9,7 +9,8 @@ class DB {
   public $pdo;
 
   public function __construct() {
-    $this->conn = new PDO('mysql:dbname='. $_ENV['DB_DATABASE'] .';host=' . $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+    //$this->conn = new PDO('mysql:dbname='. $_ENV['DB_DATABASE'] .';host=' . $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+    $this->conn = new PDO('mysql:dbname='. getenv('DB_DATABASE') .';host=' . getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
     $this->conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
   }
 
