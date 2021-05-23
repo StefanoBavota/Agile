@@ -17,5 +17,4 @@ class DBManager {
         $createdUser = $this->db->insert_one($this->tableName, (array)$obj);
         return $createdUser;
     }
-
 }
