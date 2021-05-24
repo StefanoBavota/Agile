@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../../classes/Event.php';
+
 use App\Classes\Event;
 
 if (!defined('ROOT_URL')) {
@@ -10,6 +11,7 @@ if (!defined('ROOT_URL')) {
 require_once(AUTOLOAD_PATH);
 
 $errMsg = '';
+$userId = $loggedInUser->id;
 
 if (isset($_POST['create'])) {
 
@@ -21,12 +23,8 @@ if (isset($_POST['create'])) {
 
     $eventMgr = new Event();
     $result = $eventMgr->createEvent($img, $name, $description, $data, $posti, $userId);
-    if ($result > 0) {
-        echo '<script>location.href="' . ROOT_URL . 'public"</script>';
-        exit;
-    } else {
-        $errMsg = 'Mail già utilizzata...';
-    }
+
+    echo '<script>location.href="' . ROOT_URL . 'public"</script>';
 }
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
