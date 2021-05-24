@@ -27,9 +27,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo ROOT_URL; ?>public/?page=esempio2">Esempio 2</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo ROOT_URL; ?>public/?page=esempio2">Esempio 3</a>
-                    </li>
                 </ul>
                 <span class="navbar-text">
                     <?php if (!$loggedInUser) : ?>
