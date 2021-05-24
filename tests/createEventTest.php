@@ -6,7 +6,7 @@ use App\Classes\Event;
 require_once __DIR__ . '/../src/classes/Event.php';
 require_once __DIR__ . '/../src/inc/init.php';
 
-class createEventTest extends TestCase
+class CreateEventTest extends TestCase
 {
     public function test_prova()
     {
