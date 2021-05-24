@@ -1,0 +1,31 @@
+<div class="mt-5 mb-4">
+    <a href="../{{ ROOT_URL }}user?page=event" class="back underline scuro">&laquo; Lista Eventi</a>
+</div>
+
+<h2 class="mb-4">Modifica Evento</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="img">Immagine</label>
+        <input name="img" id="img" type="text" class="form-control" value="{{ event['img'] }}">
+    </div>
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input name="name" id="name" type="text" class="form-control" value="{{ event['name'] }}">
+    </div>
+    <div class="form-group">
+        <label for="description">Descrizione</label>
+        <input name="description" id="description" type="text" class="form-control" value="{{ event['description'] }}">
+    </div>
+    <div class="form-group">
+        <label for="data">Data</label>
+        <input type="date" id="data" name="data" class="form-control" value="{{ event['data'] }}">
+    </div>
+    <div class="form-group">
+        <label for="posti">N. Posti</label>
+        <input name="posti" id="posti" type="text" class="form-control" value="{{ event['posti'] }}">
+    </div>
+
+    <input type="hidden" name="id" value="{{ event['id'] }}">
+    <input name="edit" type="submit" class="btn btn-primary mt-5" value="Modifica">
+</form>

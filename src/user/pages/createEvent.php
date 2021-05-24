@@ -11,8 +11,6 @@ require_once(AUTOLOAD_PATH);
 
 $errMsg = '';
 
-$userId = $loggedInUser->id;
-
 if (isset($_POST['create'])) {
 
     $img = htmlspecialchars(trim($_POST['img']));

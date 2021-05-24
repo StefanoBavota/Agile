@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 20, 2021 alle 21:31
+-- Creato il: Mag 24, 2021 alle 10:33
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 7.3.27
 
@@ -24,6 +24,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `eventi`
+--
+
+CREATE TABLE `eventi` (
+  `id` int(11) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `data` date NOT NULL,
+  `posti` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `user`
 --
 
@@ -35,10 +51,6 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `user_type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `user`
---
 
 -- --------------------------------------------------------
 
@@ -64,6 +76,13 @@ INSERT INTO `user_type` (`id`, `name`) VALUES
 --
 
 --
+-- Indici per le tabelle `eventi`
+--
+ALTER TABLE `eventi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indici per le tabelle `user`
 --
 ALTER TABLE `user`
@@ -81,6 +100,12 @@ ALTER TABLE `user_type`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `eventi`
+--
+ALTER TABLE `eventi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT per la tabella `user`
 --
 ALTER TABLE `user`
@@ -91,6 +116,16 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `eventi`
+--
+ALTER TABLE `eventi`
+  ADD CONSTRAINT `eventi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

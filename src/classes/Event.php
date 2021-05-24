@@ -15,4 +15,28 @@ class Event extends DBManager
         }
         return array('error' => '');
     }
+
+    public function eventByUserId($user_id)
+    {
+        $sql = "SELECT * FROM eventi WHERE user_id = $user_id";
+        return $this->db->query($sql);
+    }
+
+    public function deleteEvent($id)
+    {
+        $sql = "DELETE FROM eventi WHERE id = $id";
+        return $this->db->execute($sql);
+    }
+
+    public function getEventById($id)
+    {
+        $sql = "SELECT * FROM eventi WHERE id = $id";
+        return $this->db->query($sql);
+    }
+
+    public function editEvent($id, $img, $name, $description, $data, $posti)
+    {
+        $sql = "UPDATE eventi SET img = '$img', name = '$name', description = '$description', data = '$data', posti = $posti WHERE id = $id";
+        return $this->db->execute($sql);
+    }
 }
