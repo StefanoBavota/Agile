@@ -33,10 +33,12 @@ class createEventTest extends TestCase
         $userMgr = new UserManager;
 
         $createdUser = $userMgr->register('Mario', 'Rossi', 'mariorossi@test.it', md5('password'));
+        $user_id = $createdUser['id'];
 
-        $event = ['img' => 'image', 'name' => 'test', 'description' => 'test2', 'data' => '2021-05-23', 'posti' => '66', 'user_id' => $createdUser['id']];
+        $event = ['img' => 'image', 'name' => 'test', 'description' => 'test2', 'data' => '2021-05-23', 'posti' => '66', 'user_id' => $user_id];
         $createdEvent = $eventMgr->createEvent($event['img'], $event['name'], $event['description'], $event['data'], $event['posti'], $event['user_id']);
-        $dbEvent = $eventMgr->getEventById($createdEvent['id']);
+        //$dbEvent = $eventMgr->getEventById($createdEvent['id']);
+        $dbEvent = "SELECT * FROM eventi WHERE img = 'image', name = 'test', description = 'test2', data = '2021-05-23', posti = '66'";
         
         unset($dbEvent['id']);
         $this->assertEquals($event, $dbEvent);

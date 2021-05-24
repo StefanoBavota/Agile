@@ -30,9 +30,8 @@ class Event extends DBManager
 
     public function getEventById($id)
     {
-        if (empty($id) || !$id || !isset($id)) return null;
-        $result = $this->db->query("SELECT * FROM eventi WHERE id = $id;");
-        return $result[0] ?? null;
+        $sql = "SELECT * FROM eventi WHERE id = $id";
+        return $this->db->query($sql);
     }
 
     public function editEvent($id, $img, $name, $description, $data, $posti)
