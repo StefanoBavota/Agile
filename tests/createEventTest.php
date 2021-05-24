@@ -42,6 +42,6 @@ class createEventTest extends TestCase
         
         
         //unset($dbEvent['id']);
-        $this->assertEquals($event, $dbEvent);
+        $this->assertEquals($createdEvent, $dbEvent);
     }
 }
