@@ -29,6 +29,12 @@ class Event extends DBManager
         $sql = "SELECT * FROM eventi WHERE id = $id";
         return $this->db->query($sql);
     }
+
+    public function getAllEvent()
+    {
+        $sql = "SELECT * FROM eventi";
+        return $this->db->query($sql);
+    }
     
     public function editEvent($id, $img, $name, $description, $data, $posti)
     {
