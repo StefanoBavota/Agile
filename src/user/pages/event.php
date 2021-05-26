@@ -12,6 +12,7 @@ require_once(AUTOLOAD_PATH);
 global $alertMsg;
 $userId = $loggedInUser->id;
 $eventMgr = new Event();
+$pm = new Event();
 
 if (isset($_POST['remove'])) {
 
@@ -20,7 +21,17 @@ if (isset($_POST['remove'])) {
     $alertMsg = 'deleted';
 }
 
+if (isset($_POST['add_to_favorites'])) {
+    $eventId = htmlspecialchars(trim($_POST['id']));
+    $addToFavoriteOutcome = $pm->addToFavoriteList($eventId, $userId);
+
+    if (isset($addToFavoriteOutcome)) {
+        $alertMsg = $addToFavoriteOutcome['error'];
+    }
+}
+
 $events = $eventMgr->eventByUserId($userId);
+
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);

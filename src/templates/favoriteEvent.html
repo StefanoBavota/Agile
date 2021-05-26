@@ -1,0 +1,28 @@
+<h2>Lista Preferiti</h2>
+<div class="row">
+    {% if favoriteEvent %}
+            {% for events in favoriteEvent %}
+            <div class="card mr-2" style="width: 18rem;">
+                <img src="{{ events.img }}" class="card-img-top" alt="..." style="width:100%; height: 20rem; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ events.name }}</h5>
+                    <form method="post">
+                        <input type="hidden" name="id" value="{{event['id']}}">
+                        <input name="remove_fav" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block circle" value="&#10006; Rimuovi Preferiti">
+                    </form>
+                    <h5 class="card-title">Data: {{ events.data }}</h5>
+                    <h5 class="card-title">Posti: {{ events.posti }}</h5>
+                    <h5 class="card-title">Info:</h5>
+                    <p class="card-text">{{ events.description }}</p>
+                    <a href="../{{ ROOT_URL }}user?page=editEvent&id={{ event['id'] }}" class="btn btn-primary">Modifica</a>
+                    <form method="post" class="right">
+                        <input type="hidden" name="id" value="{{ events.id }}">
+                        <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block mt-2 circle" value="&#10006; Rimuovi Evento">
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+    {% else %}
+        <p>Nessun evento disponibile...</p>
+    {% endif %}
+</div>
