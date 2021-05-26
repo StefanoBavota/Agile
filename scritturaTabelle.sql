@@ -24,3 +24,10 @@ CREATE TABLE favorites
   FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
   FOREIGN KEY (eventi_id) REFERENCES eventi(id) ON DELETE CASCADE
 );
+CREATE TABLE favorites ( 
+eventi_id int NOT NULL, 
+user_id int NOT NULL, 
+PRIMARY KEY(eventi_id,user_id), 
+FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE, 
+FOREIGN KEY (eventi_id) REFERENCES eventi(id) ON DELETE CASCADE ON UPDATE CASCADE 
+) 

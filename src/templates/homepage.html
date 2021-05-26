@@ -14,9 +14,10 @@
             <h5 class="card-title">Info:</h5>
             <p class="card-text">{{ event.description }}</p>
             <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event['id'] }}" class="btn btn-primary">Visualizza</a>
-            <form method="post" class="right">
+            <form method="post">
                 <input type="hidden" name="id" value="{{ event.id }}">
-                <input name="addToWishlist" type="submit" class="btn btn-success btn-sm btn-block mt-2 circle" value="&#x2665Preferiti">
+                <input name="addToFavourite" type="submit" class="btn btn-success btn-sm btn-block mt-2 circle"
+                    value="Preferiti">
             </form>
         </div>
     </div>

@@ -22,6 +22,7 @@ if (isset($_POST['remove'])) {
 
 $events = $eventMgr->eventByUserId($userId);
 
+
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
 
