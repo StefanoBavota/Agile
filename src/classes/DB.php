@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use \PDO;
+use \PDOException;
 
 class DB
 {
@@ -25,8 +26,13 @@ class DB
 
   public function execute($sql)
   {
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute();
+    try {
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      return true;
+    } catch (PDOException $e) {
+      return false;
+    }
   }
 
   public function insert_one($tableName, $columns = array())

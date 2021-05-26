@@ -11,7 +11,7 @@ if (!defined('ROOT_URL')) {
 require_once(AUTOLOAD_PATH);
 
 $eventMgr = new Event();
-$errorMessage = null;
+$errMsg = '';
 $userId = $loggedInUser->id;
 
 $events = $eventMgr->getAllEvent();
@@ -21,9 +21,7 @@ if (isset($_POST['addToFavourite'])) {
     $addToFavoriteOutcome = $eventMgr->addToFavoriteList($eventId, $userId);
 
     if (isset($addToFavoriteOutcome)) {
-        print_r("tonno");
-        die();
-        $errorMessage = $addToFavoriteOutcome['error'];
+        $errMsg = "errore";
     }
 }
 
