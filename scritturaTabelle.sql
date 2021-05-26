@@ -15,6 +15,15 @@ CREATE TABLE eventi
   FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
+CREATE TABLE favorites
+(
+  id int NOT NULL AUTO_INCREMENT,
+  eventi_id int NOT NULL,
+  user_id int NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  FOREIGN KEY (eventi_id) REFERENCES eventi(id) ON DELETE CASCADE
+);
 CREATE TABLE favorites ( 
 eventi_id int NOT NULL, 
 user_id int NOT NULL, 
