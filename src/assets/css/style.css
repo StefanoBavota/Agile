@@ -1,1 +1,10 @@
 /* Style */
+
+body {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 21px;
+}
+
+.view-event-container {
+    background-color: gray !important;
+}
