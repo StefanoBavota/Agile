@@ -17,7 +17,7 @@
                     <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event['id'] }}" class="btn btn-primary mt-1">Visualizza</a>
                     <form method="post" class="right">
                         <input type="hidden" name="id" value="{{ event.id }}">
-                        <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block mt-2 circle" value="Rimuovi Evento">
+                        <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger mt-1 circle" value="Rimuovi Evento">
                     </form>
                 </div>
             </div>

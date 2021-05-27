@@ -1,10 +1,8 @@
-<!-- Footer -->
-<footer class="bg-dark">
-    <hr>
-    <p class="container text-light">Copyright &copy; 2019</p>
-</footer>
-<!-- End Footer -->
+<?php
 
-</body>
+require_once(AUTOLOAD_PATH);
 
-</html>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
+
+echo $twig->render('footer.html', []);

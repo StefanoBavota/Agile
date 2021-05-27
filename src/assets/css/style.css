@@ -1,10 +1,49 @@
 /* Style */
 
 body {
-    font-family: 'Bebas Neue', cursive !important;
-    font-size: 21px !important;
+  font-family: "Bebas Neue", cursive !important;
+  font-size: 21px !important;
+  background-color: lightgray !important;
 }
 
-.view-event-container {
-    background-color: gray !important;
+#header {
+  background-color: transparent !important;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+#header.fixed {
+  background-color: rgba(255, 255, 255, 1) !important;
+  position: fixed;
+  z-index: 10000;
+}
+
+.navbar-toggler {
+  background-color: black !important;
+}
+
+.nav-link {
+  color: black !important;
+}
+
+.navbar-brand {
+  color: black !important;
+}
+
+.container {
+  max-width: 80% !important;
+}
+
+.delete-container {
+  margin: 15px -10px 0 -10px;
+  color: lightgrey;
+}
+
+.delete-container:hover {
+  color: darkslategray;
+}
+
+.dropdown-back-dark {
+    background-color: rgb(27, 27, 27) !important;
 }

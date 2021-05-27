@@ -1,0 +1,43 @@
+<div class="row col-md-4">
+    {% if loggedInUser is defined %}
+        <div style="width: 100%; margin-top:100px;">
+            <div class="jumbotron" >
+
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Lista dei desideri</span>
+                </h4>
+
+                {% if (favoriteEvent) %}
+                    {% for event in favoriteEvent %}
+                        <ul class="container-fluid">
+                            <li class="list-group-item d-flex justify-content-between lh-sm row">
+                                <div class="col-2 delete-container">
+                                    <form method="post">
+                                        <button class="btn" name="remove"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="id" value="{{ event.id }}">
+                                    </form>
+                                </div>
+
+                                <div class="col-10">
+                                    <div>
+                                        <h4 class="my-0">{{ event.name }}</h4>
+                                    </div>
+                                    <span class="text-muted">Data: {{ event.data }}</span><br>
+                                    <span class="text-muted">Posti: {{ event.posti }}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                {% else  %}
+                    <p>Nessun prodotto disponibile...</p>
+                {% endif %}
+
+                <form class="card p-2">
+                    <div class="input-group">
+                        <a href="../{{ ROOT_URL }}user/?page=favoriteEvent" class="btn btn-primary btn-sm btn-block circle">Visualizza Lista</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+</div>
