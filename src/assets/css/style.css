@@ -1,8 +1,8 @@
 /* Style */
 
 body {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 21px;
+    font-family: 'Bebas Neue', cursive !important;
+    font-size: 21px !important;
 }
 
 .view-event-container {
