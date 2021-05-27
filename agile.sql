@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 24, 2021 alle 15:14
+-- Creato il: Mag 27, 2021 alle 10:38
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 7.3.27
 
@@ -42,9 +42,27 @@ CREATE TABLE `eventi` (
 --
 
 INSERT INTO `eventi` (`id`, `img`, `name`, `description`, `data`, `posti`, `user_id`) VALUES
-(8, 'https://images.vestiairecollective.com/cdn-cgi/image/w=1000,q=80,f=auto,/produit/11487631-1_1.jpg', 'Bombix', 'Purple', '2021-05-24', 66, 3),
-(12, 'https://images.vestiairecollective.com/cdn-cgi/image/w=1000,q=80,f=auto,/produit/11487631-1_1.jpg', 'Stefano Bavota', 'Purple', '2021-05-24', 66, 3),
-(13, 'https://images.vestiairecollective.com/cdn-cgi/image/w=1000,q=80,f=auto,/produit/11487631-1_1.jpg', 'Stefano Bavota', 'Purple', '2021-05-24', 77, 3);
+(8, 'https://i.pinimg.com/originals/94/07/26/94072609a95da2eb1a41c3356f81aff8.jpg', 'Bowie', 'Purple', '2021-05-24', 66, 3),
+(12, 'https://images-na.ssl-images-amazon.com/images/I/51clTrXCI8L._AC_.jpg', 'Blues Brother', 'Purple', '2021-05-24', 66, 3),
+(13, 'https://cdn3.volusion.com/bxqxk.xvupj/v/vspfiles/photos/ROCK_868-2.jpg?v-cache=1333139669', 'Eric Clapton', 'Purple', '2021-05-24', 77, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `favorites`
+--
+
+CREATE TABLE `favorites` (
+  `eventi_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `favorites`
+--
+
+INSERT INTO `favorites` (`eventi_id`, `user_id`) VALUES
+(8, 3);
 
 -- --------------------------------------------------------
 
@@ -54,8 +72,8 @@ INSERT INTO `eventi` (`id`, `img`, `name`, `description`, `data`, `posti`, `user
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `Nome` varchar(50) NOT NULL,
-  `Cognome` varchar(50) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `cognome` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `user_type_id` int(11) NOT NULL
@@ -98,6 +116,13 @@ INSERT INTO `user_type` (`id`, `name`) VALUES
 --
 ALTER TABLE `eventi`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indici per le tabelle `favorites`
+--
+ALTER TABLE `favorites`
+  ADD PRIMARY KEY (`eventi_id`,`user_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -144,6 +169,13 @@ ALTER TABLE `user_type`
 --
 ALTER TABLE `eventi`
   ADD CONSTRAINT `eventi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Limiti per la tabella `favorites`
+--
+ALTER TABLE `favorites`
+  ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`eventi_id`) REFERENCES `eventi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

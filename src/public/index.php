@@ -14,7 +14,9 @@ $page = isset($_GET["page"]) ? $_GET["page"] : "homepage";
 
         </div>
 
-        <?php include ROOT_PATH . 'public/template-parts/sidebar.php' ?>
+        <?php if ($loggedInUser) : ?>
+            <?php include ROOT_PATH . 'public/template-parts/sidebar.php' ?>
+        <?php endif; ?>
 
     </div>
 </div>
