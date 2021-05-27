@@ -5,8 +5,7 @@
         {% for events in favoriteEvent %}
 
             <div class="card mr-2" style="width: 18rem;">
-                <img src="{{ events.img }}" class="card-img-top" alt="..."
-                    style="width:100%; height: 20rem; object-fit: cover;">
+                <img src="{{ events.img }}" class="card-img-top" alt="..." style="width:100%; height: 20rem; object-fit: contain;">
                 <div class="card-body">
                     <h5 class="card-title">{{ events.name }}</h5>
                     <h5 class="card-title">Data: {{ events.data }}</h5>

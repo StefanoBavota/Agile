@@ -12,11 +12,11 @@ require_once(AUTOLOAD_PATH);
 
 $eventMgr = new Event();
 $errMsg = '';
-$userId = $loggedInUser->id;
 
 $events = $eventMgr->getAllEvent();
 
 if (isset($_POST['addToFavourite'])) {
+    $userId = $loggedInUser->id;
     $eventId = htmlspecialchars(trim($_POST['id']));
     $addToFavoriteOutcome = $eventMgr->addToFavoriteList($eventId, $userId);
 
@@ -30,4 +30,5 @@ $twig = new \Twig\Environment($loader, []);
 
 echo $twig->render('homepage.html', [
     'events' => $events,
+    'loggedInUser' => $loggedInUser
 ]);

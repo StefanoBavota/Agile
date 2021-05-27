@@ -6,15 +6,15 @@
         {% for event in events %}
 
             <div class="card mr-2" style="width: 18rem;">
-                <img src="{{ event.img }}" class="card-img-top" alt="..." style="width:100%; height: 20rem; object-fit: cover;">
+                <img src="{{ event.img }}" class="card-img-top" alt="..." style="width:100%; height: 20rem; object-fit: contain;">
                 <div class="card-body">
                     <h5 class="card-title">{{ event.name }}</h5>
                     <h5 class="card-title">Data: {{ event.data }}</h5>
                     <h5 class="card-title">Posti: {{ event.posti }}</h5>
                     <h5 class="card-title">Info:</h5>
                     <p class="card-text">{{ event.description }}</p>
-                    <a href="../{{ ROOT_URL }}user?page=editEvent&id={{ event['id'] }}" class="btn btn-primary">Modifica</a>
-                    <a href="../{{ ROOT_URL }}user?page=view-event&id={{ event['id'] }}" class="btn btn-primary">Visualizza</a>
+                    <a href="../{{ ROOT_URL }}user?page=editEvent&id={{ event['id'] }}" class="btn btn-primary">Modifica</a><br>
+                    <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event['id'] }}" class="btn btn-primary mt-1">Visualizza</a>
                     <form method="post" class="right">
                         <input type="hidden" name="id" value="{{ event.id }}">
                         <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block mt-2 circle" value="Rimuovi Evento">
