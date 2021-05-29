@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 27, 2021 alle 10:38
+-- Creato il: Mag 29, 2021 alle 12:19
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 7.3.27
 
@@ -42,9 +42,13 @@ CREATE TABLE `eventi` (
 --
 
 INSERT INTO `eventi` (`id`, `img`, `name`, `description`, `data`, `posti`, `user_id`) VALUES
-(8, 'https://i.pinimg.com/originals/94/07/26/94072609a95da2eb1a41c3356f81aff8.jpg', 'Bowie', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '2021-05-24', 66, 3),
-(12, 'https://images-na.ssl-images-amazon.com/images/I/51clTrXCI8L._AC_.jpg', 'Blues Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '2021-05-24', 66, 3),
-(13, 'https://cdn3.volusion.com/bxqxk.xvupj/v/vspfiles/photos/ROCK_868-2.jpg?v-cache=1333139669', 'Eric Clapton', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '2021-05-24', 77, 3);
+(8, 'https://i.pinimg.com/originals/94/07/26/94072609a95da2eb1a41c3356f81aff8.jpg', 'Bowie', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue. Mauris consectetur dolor tellus, in maximus felis euismod ac. Phasellus eu diam malesuada, condimentum nisl quis, iaculis sapien. Praesent ac lobortis tortor. Fusce mattis elementum felis, vitae efficitur magna tristique eu. In pulvinar nunc mi, ut fermentum tellus ullamcorper quis. Curabitur semper tempor nulla, vel blandit dolor porta id.', '2021-05-24', 0, 3),
+(12, 'https://images-na.ssl-images-amazon.com/images/I/51clTrXCI8L._AC_.jpg', 'Blues Brother', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue. Mauris consectetur dolor tellus, in maximus felis euismod ac. Phasellus eu diam malesuada, condimentum nisl quis, iaculis sapien. Praesent ac lobortis tortor. Fusce mattis elementum felis, vitae efficitur magna tristique eu. In pulvinar nunc mi, ut fermentum tellus ullamcorper quis. Curabitur semper tempor nulla, vel blandit dolor porta id.', '2021-05-24', 1, 3),
+(13, 'https://cdn3.volusion.com/bxqxk.xvupj/v/vspfiles/photos/ROCK_868-2.jpg?v-cache=1333139669', 'Eric Clapton', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue. Mauris consectetur dolor tellus, in maximus felis euismod ac. Phasellus eu diam malesuada, condimentum nisl quis, iaculis sapien. Praesent ac lobortis tortor. Fusce mattis elementum felis, vitae efficitur magna tristique eu. In pulvinar nunc mi, ut fermentum tellus ullamcorper quis. Curabitur semper tempor nulla, vel blandit dolor porta id.', '2021-05-24', 1, 3),
+(17, 'https://images-na.ssl-images-amazon.com/images/I/614ma-mN79L._AC_SY741_.jpg', 'Stevie ray', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue. Mauris consectetur dolor tellus, in maximus felis euismod ac. Phasellus eu diam malesuada, condimentum nisl quis, iaculis sapien. Praesent ac lobortis tortor. Fusce mattis elementum felis, vitae efficitur magna tristique eu. In pulvinar nunc mi, ut fermentum tellus ullamcorper quis. Curabitur semper tempor nulla, vel blandit dolor porta id.', '2021-06-06', 1, 1),
+(18, 'https://images-na.ssl-images-amazon.com/images/I/513iyuE3xaL._AC_.jpg', 'BB KING', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue. Mauris consectetur dolor tellus, in maximus felis euismod ac. Phasellus eu diam malesuada, condimentum nisl quis, iaculis sapien. Praesent ac lobortis tortor. Fusce mattis elementum felis, vitae efficitur magna tristique eu. In pulvinar nunc mi, ut fermentum tellus ullamcorper quis. Curabitur semper tempor nulla, vel blandit dolor porta id.', '2021-06-04', 999, 1),
+(19, 'https://www.prints4u.net/wp-content/uploads/2020/01/Halsey-039.jpg', 'Halsey', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue. Mauris consectetur dolor tellus, in maximus felis euismod ac. Phasellus eu diam malesuada, condimentum nisl quis, iaculis sapien. Praesent ac lobortis tortor. Fusce mattis elementum felis, vitae efficitur magna tristique eu. In pulvinar nunc mi, ut fermentum tellus ullamcorper quis. Curabitur semper tempor nulla, vel blandit dolor porta id.', '2021-03-15', 500, 1),
+(20, 'https://phenomenon.it/sites/default/files/events/locandina-2017-10/Schermata%202016-03-22%20alle%2017.23.24.png', 'Gemitaiz', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue. Mauris consectetur dolor tellus, in maximus felis euismod ac. Phasellus eu diam malesuada, condimentum nisl quis, iaculis sapien. Praesent ac lobortis tortor. Fusce mattis elementum felis, vitae efficitur magna tristique eu. In pulvinar nunc mi, ut fermentum tellus ullamcorper quis. Curabitur semper tempor nulla, vel blandit dolor porta id.', '2021-05-08', 400, 1);
 
 -- --------------------------------------------------------
 
@@ -62,7 +66,23 @@ CREATE TABLE `favorites` (
 --
 
 INSERT INTO `favorites` (`eventi_id`, `user_id`) VALUES
-(8, 3);
+(8, 1),
+(8, 3),
+(13, 1),
+(13, 3),
+(18, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `register`
+--
+
+CREATE TABLE `register` (
+  `id` int(11) NOT NULL,
+  `eventi_id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -83,7 +103,7 @@ CREATE TABLE `user` (
 -- Dump dei dati per la tabella `user`
 --
 
-INSERT INTO `user` (`id`, `Nome`, `Cognome`, `email`, `password`, `user_type_id`) VALUES
+INSERT INTO `user` (`id`, `nome`, `cognome`, `email`, `password`, `user_type_id`) VALUES
 (1, 'stefano', 'bavota', 'cristianobombardo@hotmail.it', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
 (3, 'Stefano', 'Bavota', 'test@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
 (4, 'test', 'test', 'test2@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2);
@@ -126,6 +146,13 @@ ALTER TABLE `favorites`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indici per le tabelle `register`
+--
+ALTER TABLE `register`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `eventi_id` (`eventi_id`);
+
+--
 -- Indici per le tabelle `user`
 --
 ALTER TABLE `user`
@@ -146,7 +173,13 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT per la tabella `eventi`
 --
 ALTER TABLE `eventi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT per la tabella `register`
+--
+ALTER TABLE `register`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
@@ -176,6 +209,12 @@ ALTER TABLE `eventi`
 ALTER TABLE `favorites`
   ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`eventi_id`) REFERENCES `eventi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `register`
+--
+ALTER TABLE `register`
+  ADD CONSTRAINT `register_ibfk_1` FOREIGN KEY (`eventi_id`) REFERENCES `eventi` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

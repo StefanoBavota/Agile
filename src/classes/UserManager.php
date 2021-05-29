@@ -59,6 +59,19 @@ class UserManager extends DBManager
     return false;
   }
 
+  public function getUserById($id)
+  {
+    if (empty($id) || !$id || !isset($id)) return null;
+    $result = $this->db->query("SELECT * FROM user WHERE id = $id;");
+    return $result[0] ?? null;
+  }
+
+  public function getEmailById($userId)
+  {
+    $sql = "SELECT email FROM user WHERE id = $userId";
+    return $this->db->query($sql);
+  }
+
   // Private Methods
   private function _setUser($user)
   {
@@ -68,12 +81,5 @@ class UserManager extends DBManager
       'is_admin' => $user->user_type_id == 1
     ];
     $_SESSION['user'] = $userToStore;
-  }
-
-  public function getUserById($id)
-  {
-    if (empty($id) || !$id || !isset($id)) return null;
-    $result = $this->db->query("SELECT * FROM user WHERE id = $id;");
-    return $result[0] ?? null;
   }
 }

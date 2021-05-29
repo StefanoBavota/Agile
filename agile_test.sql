@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 27, 2021 alle 10:38
+-- Creato il: Mag 29, 2021 alle 12:19
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 7.3.27
 
@@ -11,8 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
--- drop DATABASE agile_test;
--- CREATE DATABASE agile_test;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -48,6 +46,18 @@ CREATE TABLE `eventi` (
 CREATE TABLE `favorites` (
   `eventi_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `register`
+--
+
+CREATE TABLE `register` (
+  `id` int(11) NOT NULL,
+  `eventi_id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -95,6 +105,13 @@ ALTER TABLE `favorites`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indici per le tabelle `register`
+--
+ALTER TABLE `register`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `eventi_id` (`eventi_id`);
+
+--
 -- Indici per le tabelle `user`
 --
 ALTER TABLE `user`
@@ -115,7 +132,13 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT per la tabella `eventi`
 --
 ALTER TABLE `eventi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT per la tabella `register`
+--
+ALTER TABLE `register`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT per la tabella `user`

@@ -64,4 +64,21 @@ class Event extends DBManager
         $sql = "SELECT * FROM eventi INNER JOIN favorites ON favorites.eventi_id = eventi.id AND favorites.user_id = $userId";
         return $this->db->query($sql);
     }
+
+    public function addToRegister($eventId, $email)
+    {
+        $sqlCheck = "SELECT * FROM register WHERE eventi_id = $eventId AND email = '$email'";
+        $check = $this->db->query($sqlCheck);
+
+        $sql = "INSERT INTO register (eventi_id, email) VALUES ($eventId, '$email')";
+
+        if (!$check) {
+            $decrese = "UPDATE eventi SET posti = posti -1 WHERE id = $eventId";
+            $this->db->execute($decrese);
+            return $this->db->execute($sql);
+            exit;
+        } else {
+            echo "<script type='text/javascript'>alert('Ti sei già registrato');</script>";
+        }
+    }
 }
