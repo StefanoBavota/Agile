@@ -23,10 +23,7 @@ if (isset($_GET['id'])) {
 
 if (isset($_SESSION['user'])) {
     $userId = $loggedInUser->id;
-    $email = $userMgr->getEmailById($userId)[0];
-    foreach ($email as $mail) {
-        $mail;
-    }
+    $email = $userMgr->getEmailById($userId)[0]['email'];
 }
 
 if (isset($_POST['register'])) {
@@ -37,7 +34,7 @@ if (isset($_POST['register'])) {
         $emailUns = htmlspecialchars(trim($_POST['email']));
         $addToRegister = $eventMgr->addToRegister($eventId, $emailUns);
     } else {
-        $addToRegister = $eventMgr->addToRegister($eventId, $mail);
+        $addToRegister = $eventMgr->addToRegister($eventId, $email);
     }
 
     if (isset($addToRegister)) {
