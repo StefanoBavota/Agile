@@ -11,6 +11,7 @@ class DB
   private $conn;
   public $pdo;
 
+
   public function __construct()
   {
     //$this->conn = new PDO('mysql:dbname='. $_ENV['DB_DATABASE'] .';host=' . $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
@@ -34,7 +35,7 @@ class DB
       return false;
     }
   }
-
+    
   public function insert_one($tableName, $columns = array())
   {
 
@@ -59,3 +60,4 @@ class DB
     return $createdUser;
   }
 }
+

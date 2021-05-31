@@ -25,7 +25,6 @@ if (isset($_GET['id'])) {
 if (isset($_SESSION['user'])) {
     $userId = $loggedInUser->id;
     $email = $userMgr->getEmailById($userId)[0]['email'];
-   
 }
 
 if (isset($_POST['register'])) {
@@ -55,7 +54,8 @@ if (isset($_POST['remove'])) {
 }
 
 $allAnswer = $eventMgr->getCommentByEventId($eventId);
-$event = $eventMgr->getEventById($id)[0];
+
+$userName = $userMgr->getUserById($userId);
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
@@ -63,5 +63,6 @@ $twig = new \Twig\Environment($loader, []);
 echo $twig->render('viewEvent.html', [
     'event' => $event,
     'loggedInUser' => $loggedInUser,
-    'allAnswer' => $allAnswer
+    'allAnswer' => $allAnswer,
+    'userName' => $userName
 ]);
