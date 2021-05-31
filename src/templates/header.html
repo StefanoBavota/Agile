@@ -17,7 +17,7 @@
 	<script src="https://use.fontawesome.com/75f1335a8a.js"></script>
 	<script src="https://kit.fontawesome.com/72ffd78db7.js" crossorigin="anonymous"></script>
 	<!-- fine icone -->
-	
+
 	<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.css">
 
 	<title>Eventi Agile</title>
@@ -35,12 +35,14 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					{% if loggedInUser %}
 					<li class="nav-item">
-						<a class="nav-link" href="../{{ ROOT_URL }}public/?page=esempio1">Esempio 1</a>
+						<a class="nav-link" href="../{{ ROOT_URL }}user?page=calendar">Calendario</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../{{ ROOT_URL }}public/?page=esempio2">Esempio 2</a>
+						<a class="nav-link" href="../{{ ROOT_URL }}user?page=favoriteEvent">Preferiti</a>
 					</li>
+					{% endif %}
 				</ul>
 
 				{% if not loggedInUser %}
@@ -50,8 +52,25 @@
 							data-bs-toggle="dropdown" aria-expanded="false">
 							Area riservata
 						</a>
-						<ul class="dropdown-menu dropdown-menu-dark dropdown-back-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						<ul class="dropdown-menu dropdown-menu-dark dropdown-back-dark"
+							aria-labelledby="navbarDarkDropdownMenuLink">
 							<a class="dropdown-item" href="../{{ ROOT_URL }}auth?page=login">Login / Registrazione</a>
+						</ul>
+					</li>
+				</ul>
+				{% endif %}
+
+				{% if loggedInUser %}
+				<ul class="navbar-nav dropdown ml-5">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</a>
+						<ul class="dropdown-menu  dropdown-menu-dark dropdown-back-dark"
+							aria-labelledby="navbarDarkDropdownMenuLink">
+							<a class="dropdown-item" href="../{{ ROOT_URL }}user?page=profile">Profilo</a>
+							<a class="dropdown-item" href="../{{ ROOT_URL }}auth?page=logout">Logout</a>
 						</ul>
 					</li>
 				</ul>
@@ -64,13 +83,10 @@
 							data-bs-toggle="dropdown" aria-expanded="false">
 							{{ loggedInUser.email }}
 						</a>
-						<ul class="dropdown-menu  dropdown-menu-dark dropdown-back-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-							<a class="dropdown-item" href="../{{ ROOT_URL }}user?page=profile">Profilo</a>
-							<a class="dropdown-item" href="../{{ ROOT_URL }}user?page=favoriteEvent">Preferiti</a>
+						<ul class="dropdown-menu  dropdown-menu-dark dropdown-back-dark"
+							aria-labelledby="navbarDarkDropdownMenuLink">
 							<a class="dropdown-item" href="../{{ ROOT_URL }}user?page=event">Eventi Creati</a>
-							<a class="dropdown-item" href="../{{ ROOT_URL }}user?page=createEvent">Crea</a>
-							<a class="dropdown-item" href="../{{ ROOT_URL }}user?page=calendar">Calendario</a>
-							<a class="dropdown-item" href="../{{ ROOT_URL }}auth?page=logout">Logout</a>
+							<a class="dropdown-item" href="../{{ ROOT_URL }}user?page=createEvent">Crea Evento</a>
 						</ul>
 					</li>
 				</ul>
@@ -83,7 +99,8 @@
 							data-bs-toggle="dropdown" aria-expanded="false">
 							Amministrazione
 						</a>
-						<ul class="dropdown-menu dropdown-menu-dark dropdown-back-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						<ul class="dropdown-menu dropdown-menu-dark dropdown-back-dark"
+							aria-labelledby="navbarDarkDropdownMenuLink">
 							<!-- <a class="dropdown-item" href="../{{ ROOT_URL }}admin?page=products-list">Gestione
 								Prodotti</a>
 							<a class="dropdown-item" href="../{{ ROOT_URL }}admin?page=users-list">Gestione Utenti</a>
