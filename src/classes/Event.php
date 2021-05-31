@@ -37,6 +37,17 @@ class Event extends DBManager
         $sql = "SELECT * FROM eventi WHERE id = $id;";
         return $this->db->query($sql);
     }
+    public function getCurrentRegisterEvent($email)
+    {
+        $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' ORDER by data";
+        return $this->db->query($sql);
+    }
+    public function filterCalendar($email,$anno,$mese)
+    {
+        $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' where eventi.data LIKE '$anno-$mese-%' ORDER by data";
+        return $this->db->query($sql);
+    }
+    
 
 
     public function getAllEvent()
@@ -90,7 +101,6 @@ class Event extends DBManager
             echo "<script type='text/javascript'>alert('Ti sei già registrato');</script>";
         }
     }
-
     public function addComment($answer, $eventId, $userId)
     {
         $sql = "INSERT INTO argument (answer, eventi_id, user_id) VALUES ('$answer', $eventId, $userId)";
@@ -114,4 +124,11 @@ class Event extends DBManager
         $sql = "SELECT * FROM music_type";
         return $this->db->query($sql);
     }
+
+
+
+
+
+
+
 }
