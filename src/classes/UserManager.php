@@ -85,6 +85,17 @@ class UserManager extends DBManager
     return $this->db->execute($sql);
   }
 
+  public function updateUserType($id, $nome, $cognome, $email, $user_type_id)
+  {
+    $sql = "UPDATE user SET nome = '$nome', cognome = '$cognome', email = '$email', user_type_id = $user_type_id WHERE id = $id";
+    return $this->db->execute($sql);
+  }
+
+  public function getAllUser(){
+    $sql = "SELECT * FROM user";
+    return $this->db->query($sql);
+  }
+
   // Private Methods
   private function _setUser($user)
   {
