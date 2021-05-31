@@ -55,7 +55,6 @@ if (isset($_POST['remove'])) {
 
 $allAnswer = $eventMgr->getCommentByEventId($eventId);
 $event = $eventMgr->getEventById($id)[0];
-$userName = $userMgr->getUserById($userId);
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
@@ -63,6 +62,5 @@ $twig = new \Twig\Environment($loader, []);
 echo $twig->render('viewEvent.html', [
     'event' => $event,
     'loggedInUser' => $loggedInUser,
-    'allAnswer' => $allAnswer,
-    'userName' => $userName
+    'allAnswer' => $allAnswer
 ]);
