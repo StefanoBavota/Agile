@@ -2,13 +2,15 @@
 
 namespace App\Classes;
 
+use PDOException;
+
 require_once __DIR__ . '/DBManager.php';
 class Event extends DBManager
 {
 
-    public function createEvent($img, $name, $description, $data, $posti, $user_id)
+    public function createEvent($img, $name, $description, $data, $posti, $user_id, $musicType)
     {
-        $sql = "INSERT INTO eventi (img, name, description, data, posti, user_id) VALUES ('$img', '$name', '$description', '$data', $posti, $user_id)";
+        $sql = "INSERT INTO eventi (img, name, description, data, posti, user_id, music_type_id) VALUES ('$img', '$name', '$description', '$data', $posti, $user_id, $musicType)";
         return $this->db->execute($sql);
     }
 
@@ -26,7 +28,13 @@ class Event extends DBManager
 
     public function getEventById($id)
     {
-        $sql = "SELECT * FROM eventi WHERE id = $id";
+        $sql = "SELECT * FROM eventi INNER JOIN music_type on music_type_id = music_type.id WHERE eventi.id = $id;";
+        return $this->db->query($sql);
+    }
+
+    public function getEventByIdTest($id)
+    {
+        $sql = "SELECT * FROM eventi WHERE id = $id;";
         return $this->db->query($sql);
     }
     public function getCurrentRegisterEvent($email)
@@ -41,15 +49,16 @@ class Event extends DBManager
     }
     
 
+
     public function getAllEvent()
     {
         $sql = "SELECT * FROM eventi";
         return $this->db->query($sql);
     }
 
-    public function editEvent($id, $img, $name, $description, $data, $posti)
+    public function editEvent($id, $img, $name, $description, $data, $posti, $musicType)
     {
-        $sql = "UPDATE eventi SET img = '$img', name = '$name', description = '$description', data = '$data', posti = $posti WHERE id = $id";
+        $sql = "UPDATE eventi SET img = '$img', name = '$name', description = '$description', data = '$data', posti = posti+$posti, music_type_id = $musicType  WHERE id = $id";
         return $this->db->execute($sql);
     }
 
@@ -91,6 +100,29 @@ class Event extends DBManager
         } else {
             echo "<script type='text/javascript'>alert('Ti sei già registrato');</script>";
         }
+    }
+    public function addComment($answer, $eventId, $userId)
+    {
+        $sql = "INSERT INTO argument (answer, eventi_id, user_id) VALUES ('$answer', $eventId, $userId)";
+        return $this->db->execute($sql);
+    }
+
+    public function getCommentByEventId($eventId)
+    {
+        $sql = "SELECT argument.id AS answer_id, answer, eventi_id, user_id, nome, cognome FROM argument INNER JOIN user on user_id = user.id WHERE eventi_id = $eventId";
+        return $this->db->query($sql);
+    }
+
+    public function deleteComment($id)
+    {
+        $sql = "DELETE FROM argument WHERE id = $id";
+        return $this->db->execute($sql);
+    }
+
+    public function getAllMusicType()
+    {
+        $sql = "SELECT * FROM music_type";
+        return $this->db->query($sql);
     }
 
 

@@ -12,6 +12,7 @@ require_once(AUTOLOAD_PATH);
 
 $errMsg = '';
 $userId = $loggedInUser->id;
+$eventMgr = new Event();
 
 if (isset($_POST['create'])) {
 
@@ -20,14 +21,18 @@ if (isset($_POST['create'])) {
     $description = htmlspecialchars(trim($_POST['description']));
     $data = $_POST['data'];
     $posti = htmlspecialchars(trim($_POST['posti']));
+    $musicType = htmlspecialchars(trim($_POST['musicType']));
 
-    $eventMgr = new Event();
-    $result = $eventMgr->createEvent($img, $name, $description, $data, $posti, $userId);
+    $result = $eventMgr->createEvent($img, $name, $description, $data, $posti, $userId, $musicType);
 
     echo '<script>location.href="' . ROOT_URL . 'public"</script>';
 }
 
+$musicTypes = $eventMgr->getAllMusicType();
+
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
 
-echo $twig->render('createEvent.html', []);
+echo $twig->render('createEvent.html', [
+    'musicTypes' => $musicTypes
+]);

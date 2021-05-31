@@ -17,6 +17,7 @@ if (isset($_GET['id'])) {
 
     $id = trim($_GET['id']);
     $event = $eventMgr->getEventById($id)[0];
+    $musicTypes = $eventMgr->getAllMusicType();
 }
 
 if (isset($_POST['edit'])) {
@@ -26,10 +27,11 @@ if (isset($_POST['edit'])) {
     $description = htmlspecialchars(trim($_POST['description']));
     $data = $_POST['data'];
     $posti = htmlspecialchars(trim($_POST['posti']));
+    $musicType = htmlspecialchars(trim($_POST['musicType']));
 
     if ($img != '' && $name != '' && $description != '' && $data != '' && $posti != '') {
 
-        $result = $eventMgr->editEvent($id, $img, $name, $description, $data, $posti);
+        $result = $eventMgr->editEvent($id, $img, $name, $description, $data, $posti, $musicType);
 
         echo '<script>location.href="' . ROOT_URL . 'user?page=event"</script>';
         exit;
@@ -42,5 +44,6 @@ $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
 
 echo $twig->render('editEvent.html', [
-    'event' => $event
+    'event' => $event,
+    'musicTypes' => $musicTypes
 ]);

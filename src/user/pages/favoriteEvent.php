@@ -12,15 +12,12 @@ $eventMgr = new Event();
 global $alertMsg;
 $userId = $loggedInUser->id;
 
-
 if (isset($_POST['remove_fav'])) {
     $eventId = htmlspecialchars(trim($_POST['id']));
     $eventMgr->delete_favorite($eventId, $userId);
 }
 
-
 $favoriteEvent = $eventMgr->getCurrentUserFavorites($userId);
-
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);

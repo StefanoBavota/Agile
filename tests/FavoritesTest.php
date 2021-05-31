@@ -29,9 +29,9 @@ class FavoritesTest extends TestCase
     {
         $eventMgr = new Event();
 
-        $user = ['user_id' => 1];
-        $event = ['img' => 'image', 'name' => 'test', 'description' => 'test2', 'data' => '2021-05-24', 'posti' => 66, 'user_id' => $user['user_id']];
-        $eventMgr->createEvent($event['img'], $event['name'], $event['description'], $event['data'], $event['posti'], $event['user_id']);
+        $user = ['user_id' => 1, 'music_type_id' => 1];
+        $event = ['img' => 'image', 'name' => 'test', 'description' => 'test2', 'data' => '2021-05-24', 'posti' => 66, 'user_id' => $user['user_id'], 'music_type_id' => $user['music_type_id']];
+        $eventMgr->createEvent($event['img'], $event['name'], $event['description'], $event['data'], $event['posti'], $event['user_id'], $event['music_type_id']);
 
         $eventMgr->addToFavoriteList(1, $user['user_id']);
         $favEvent = $eventMgr->getCurrentUserFavorites($user['user_id'])[0];

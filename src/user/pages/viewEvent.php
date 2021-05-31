@@ -19,6 +19,7 @@ $userMgr = new UserManager();
 
 if (isset($_GET['id'])) {
     $id = trim($_GET['id']);
+    $eventId = htmlspecialchars($id);
 }
 
 if (isset($_SESSION['user'])) {
@@ -28,8 +29,6 @@ if (isset($_SESSION['user'])) {
 }
 
 if (isset($_POST['register'])) {
-
-    $eventId = htmlspecialchars($id);
 
     if(!$loggedInUser) {
         $emailUns = htmlspecialchars(trim($_POST['email']));
@@ -43,6 +42,19 @@ if (isset($_POST['register'])) {
     }
 }
 
+if (isset($_POST['comment'])) {
+    $answer = htmlspecialchars(trim($_POST['answer']));
+
+    $addToArgument = $eventMgr->addComment($answer, $eventId, $userId);
+}
+
+if (isset($_POST['remove'])) {
+    $answerId = htmlspecialchars(trim($_POST['id']));
+
+    $eventMgr->deleteComment($answerId);
+}
+
+$allAnswer = $eventMgr->getCommentByEventId($eventId);
 $event = $eventMgr->getEventById($id)[0];
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
@@ -51,4 +63,5 @@ $twig = new \Twig\Environment($loader, []);
 echo $twig->render('viewEvent.html', [
     'event' => $event,
     'loggedInUser' => $loggedInUser,
+    'allAnswer' => $allAnswer
 ]);

@@ -15,6 +15,10 @@ CREATE TABLE eventi
   FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
+ALTER TABLE eventi
+ADD music_type_id int,
+ADD FOREIGN KEY (music_type_id) REFERENCES music_type(id) ON DELETE CASCADE;
+
 CREATE TABLE favorites
 (
   id int NOT NULL AUTO_INCREMENT,
@@ -25,14 +29,6 @@ CREATE TABLE favorites
   FOREIGN KEY (eventi_id) REFERENCES eventi(id) ON DELETE CASCADE
 );
 
-CREATE TABLE favorites ( 
-eventi_id int NOT NULL, 
-user_id int NOT NULL, 
-PRIMARY KEY(eventi_id,user_id), 
-FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE, 
-FOREIGN KEY (eventi_id) REFERENCES eventi(id) ON DELETE CASCADE ON UPDATE CASCADE 
-) 
-
 CREATE TABLE register
 (
   id int NOT NULL AUTO_INCREMENT,
@@ -41,3 +37,25 @@ CREATE TABLE register
   PRIMARY KEY(id),
   FOREIGN KEY (eventi_id) REFERENCES eventi(id) ON DELETE CASCADE
 );
+
+CREATE TABLE argument
+(
+  id int NOT NULL AUTO_INCREMENT,
+  answer text NOT NULL,
+  eventi_id int NOT NULL,
+  user_id int NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  FOREIGN KEY (eventi_id) REFERENCES eventi(id) ON DELETE CASCADE
+);
+
+CREATE TABLE music_type
+(
+  id int NOT NULL AUTO_INCREMENT,
+  genere varchar(50) NOT NULL,
+  PRIMARY KEY(id),
+);
+
+ALTER TABLE user
+ADD music_type_id int,
+ADD FOREIGN KEY (music_type_id) REFERENCES music_type(id) ON DELETE CASCADE;
