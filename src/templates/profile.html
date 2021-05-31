@@ -18,8 +18,8 @@
         </div>
 
         <label for="musicType" class="">Modifica genere preferito</label>
-        <select name="musicType" id="musicType" type="text" class="form-control" value="{{ musicType.id }}">
-            <option value="0"> {{ user.genere }} </option>
+        <select name="musicType" id="musicType" type="text" class="form-control" value="{{ user.music_type_id }}">
+            <option value="{{ user.music_type_id }}"> {{ user.genere }} </option>
             {% if musicTypes %}
                 {% for musicType in musicTypes %}
     

@@ -79,7 +79,8 @@ class UserManager extends DBManager
     return $this->db->query($sql);
   }
 
-  public function updateUser($userId, $nome, $cognome, $email, $musicType) {
+  public function updateUser($userId, $nome, $cognome, $email, $musicType)
+  {
     $sql = "UPDATE user SET nome = '$nome', cognome = '$cognome', email = '$email', music_type_id = $musicType WHERE id = $userId";
     return $this->db->execute($sql);
   }
