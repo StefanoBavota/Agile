@@ -24,6 +24,7 @@ if (isset($_GET['id'])) {
 if (isset($_SESSION['user'])) {
     $userId = $loggedInUser->id;
     $email = $userMgr->getEmailById($userId)[0]['email'];
+   
 }
 
 if (isset($_POST['register'])) {
