@@ -23,25 +23,16 @@ $user = $userMgr->getUserById($id);
 
 if (isset($_POST['update'])) {
 
-    $id = trim($_POST['id']);
+    $userId = htmlspecialchars(trim($_POST['id']));
     $nome = htmlspecialchars(trim($_POST['nome']));
     $cognome = htmlspecialchars(trim($_POST['cognome']));
     $email = htmlspecialchars(trim($_POST['email']));
     $user_type_id = htmlspecialchars(trim($_POST['user_type_id']));
 
-    if ($id != '' && $id != '0' && $nome != '' && $cognome != '' && $email != '' && $user_type_id != '') {
+    $user = $userMgr->updateUserType($userId, $nome, $cognome, $email, $user_type_id);
 
-        $user = $userMgr->updateUserType($id, $nome, $cognome, $email, $user_type_id);
-
-        if ($user > 0) {
-            echo "<script>location.href='" . ROOT_URL . "user?page=admin&msg=updatedUserType';</script>";
-            exit;
-        } else {
-            $alertMsg = 'err';
-        }
-    } else {
-        $alertMsg = 'mandatory_fields';
-    }
+    echo "<script>location.href='" . ROOT_URL . "user?page=admin&msg=updatedUserType';</script>";
+          
 }
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
