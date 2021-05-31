@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 29, 2021 alle 12:19
+-- Creato il: Mag 31, 2021 alle 15:17
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 7.3.27
 
@@ -18,8 +18,21 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `agile`
+-- Database: `agile_test`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `argument`
+--
+
+CREATE TABLE `argument` (
+  `id` int(11) NOT NULL,
+  `answer` text NOT NULL,
+  `eventi_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -34,7 +47,8 @@ CREATE TABLE `eventi` (
   `description` text NOT NULL,
   `data` date NOT NULL,
   `posti` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `music_type_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -46,6 +60,17 @@ CREATE TABLE `eventi` (
 CREATE TABLE `favorites` (
   `eventi_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `music_type`
+--
+
+CREATE TABLE `music_type` (
+  `id` int(11) NOT NULL,
+  `genere` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -72,7 +97,8 @@ CREATE TABLE `user` (
   `cognome` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `user_type_id` int(11) NOT NULL
+  `user_type_id` int(11) NOT NULL,
+  `music_type_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,11 +117,20 @@ CREATE TABLE `user_type` (
 --
 
 --
+-- Indici per le tabelle `argument`
+--
+ALTER TABLE `argument`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `eventi_id` (`eventi_id`);
+
+--
 -- Indici per le tabelle `eventi`
 --
 ALTER TABLE `eventi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `music_type_id` (`music_type_id`);
 
 --
 -- Indici per le tabelle `favorites`
@@ -103,6 +138,12 @@ ALTER TABLE `eventi`
 ALTER TABLE `favorites`
   ADD PRIMARY KEY (`eventi_id`,`user_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indici per le tabelle `music_type`
+--
+ALTER TABLE `music_type`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `register`
@@ -116,7 +157,8 @@ ALTER TABLE `register`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_type_id` (`user_type_id`);
+  ADD KEY `user_type_id` (`user_type_id`),
+  ADD KEY `music_type_id` (`music_type_id`);
 
 --
 -- Indici per le tabelle `user_type`
@@ -129,22 +171,34 @@ ALTER TABLE `user_type`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `argument`
+--
+ALTER TABLE `argument`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT per la tabella `eventi`
 --
 ALTER TABLE `eventi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT per la tabella `music_type`
+--
+ALTER TABLE `music_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `user_type`
