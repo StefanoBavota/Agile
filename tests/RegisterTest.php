@@ -46,9 +46,9 @@ class RegisterTest extends TestCase
     {
         // TEST REGISTER
         $userMgr = new UserManager;
-        $User = ['nome' => 'Mario', 'cognome' => 'Rossi', 'email' => 'mariorossi@test.it', 'password' => 'password'];
-        $createdUser = $userMgr->register($User['nome'], $User['cognome'], $User['email'], $User['password']);
-        $dbUser = $userMgr->getUserById($createdUser['id']);
+        $User = ['nome' => 'Mario', 'cognome' => 'Rossi', 'email' => 'mariorossi@test.it', 'password' => 'password', 'music_type_id' => 1];
+        $createdUser = $userMgr->register($User['nome'], $User['cognome'], $User['email'], $User['password'], $User['music_type_id']);
+        $dbUser = $userMgr->getUserByIdTest($createdUser['id'])[0];
         // processing data pre assertion
         unset($dbUser['id']);
         unset($dbUser['user_type_id']);

@@ -29,7 +29,7 @@ class LoginTest extends TestCase {
     {
         // TEST REGISTER
         $userMgr = new UserManager;
-        $userMgr->register('Mario', 'Rossi', 'mariorossi@test.it', md5('password'));
+        $userMgr->register('Mario', 'Rossi', 'mariorossi@test.it', md5('password'), 1);
         $result = $userMgr->login('mariorossi@test.it', md5('password'));
         $this->assertEquals($result, true);
     }

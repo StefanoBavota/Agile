@@ -67,6 +67,12 @@ class UserManager extends DBManager
     return $result[0] ?? null;
   }
 
+  public function getUserByIdTest($id)
+  {
+    $sql = "SELECT * FROM user WHERE id = $id";
+    return $this->db->query($sql);
+  }
+
   public function getEmailById($userId)
   {
     $sql = "SELECT email FROM user WHERE id = $userId";
