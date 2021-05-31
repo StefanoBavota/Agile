@@ -27,19 +27,24 @@ if (isset($_SESSION['user'])) {
     $email = $userMgr->getEmailById($userId)[0]['email'];
 }
 
+$event = $eventMgr->getEventById($id)[0];
+
 if (isset($_POST['register'])) {
+
+    $nome = $event['name'];
+    $data = $event['data'];
 
     if (!$loggedInUser) {
         $emailUns = htmlspecialchars(trim($_POST['email']));
         $addToRegister = $eventMgr->addToRegister($eventId, $emailUns);
         $sub = "Mail dal Gruppo 6";
-        $msg = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue.";
+        $msg = "Ti sei registrato al concerto di: " . $nome . " che si terra' in data: " . $data;
         $rec = $emailUns;
         mail($rec, $sub, $msg);
     } else {
         $addToRegister = $eventMgr->addToRegister($eventId, $email);
         $sub = "Mail dal Gruppo 6";
-        $msg = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue.";
+        $msg = "Ti sei registrato al concerto di: " . $nome . " che si terra' in data: " . $data;
         $rec = $email;
         mail($rec, $sub, $msg);
     }
@@ -62,7 +67,6 @@ if (isset($_POST['remove'])) {
 }
 
 $allAnswer = $eventMgr->getCommentByEventId($eventId);
-$event = $eventMgr->getEventById($id)[0];
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
