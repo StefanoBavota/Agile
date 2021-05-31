@@ -21,7 +21,7 @@ class UserManager extends DBManager
     return $password == $confirm_password;
   }
 
-  public function register($nome, $cognome, $email, $password)
+  public function register($nome, $cognome, $email, $password, $musicType)
   {
 
     $result = $this->db->query("SELECT * FROM user WHERE email = '$email'");
@@ -34,6 +34,7 @@ class UserManager extends DBManager
       'cognome' => $cognome,
       'email' => $email,
       'password' => md5($password),
+      'music_type_id' => $musicType,
       'user_type_id' => 2
     ]);
 
@@ -62,7 +63,7 @@ class UserManager extends DBManager
   public function getUserById($id)
   {
     if (empty($id) || !$id || !isset($id)) return null;
-    $result = $this->db->query("SELECT * FROM user WHERE id = $id;");
+    $result = $this->db->query("SELECT * FROM user INNER JOIN music_type on music_type_id = music_type.id WHERE user.id = $id;");
     return $result[0] ?? null;
   }
 
@@ -70,6 +71,11 @@ class UserManager extends DBManager
   {
     $sql = "SELECT email FROM user WHERE id = $userId";
     return $this->db->query($sql);
+  }
+
+  public function updateUser($userId, $nome, $cognome, $email, $musicType) {
+    $sql = "UPDATE user SET nome = '$nome', cognome = '$cognome', email = '$email', music_type_id = $musicType WHERE id = $userId";
+    return $this->db->execute($sql);
   }
 
   // Private Methods

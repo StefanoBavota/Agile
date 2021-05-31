@@ -1,25 +1,68 @@
 <div class="jumbotron separate-top view-event-container">
-	<img src="{{ event.img }}" class="card-img-top" style="width:100%; height: 40rem; object-fit: contain; object-position: 50% 75%;">
+	<img src="{{ event.img }}" class="card-img-top"
+		style="width:100%; height: 40rem; object-fit: contain; object-position: 50% 75%;">
 	<div class="card-body">
 		<h1 class="display-5">{{ event.name }}</h1>
 		<p class="card-text">{{ event.description }}</p>
-		
+
 		<h5 class="card-title">Data: {{ event.data }}</h5>
 		<h5 class="card-title">Posti: {{ event.posti }}</h5>
 
 		<form method="post">
 
+			{% if event.posti > 0 %}
+
 			{% if not loggedInUser %}
-				<div class="form-group col-md-7 mt-5 mb-3">
-					<label for="email">Email</label>
-					<input name="email" id="email" type="text" class="form-control" required>
-				</div>
+			<div class="form-group col-md-7 mt-5 mb-3">
+				<label for="email">Email</label>
+				<input name="email" id="email" type="text" class="form-control" required>
+			</div>
 			{% endif %}
 
-			{% if event.posti > 0 %}
-				<button class="btn btn-primary mt-3" type="submit" name="register">Registrati</button>
+			<button class="btn btn-primary mt-3" type="submit" name="register">Registrati</button>
 			{% endif %}
 
 		</form>
 	</div>
+
 </div>
+
+{% if loggedInUser %}
+
+	<form method="post">
+		<div class="form-group">
+			<label for="answer">Commenta: </label>
+			<textarea rows="7" name="answer" id="answer" type="text" class="form-control" required></textarea>
+		</div>
+
+		<button class="btn btn-primary mb-5 mt-3" type="submit" name="comment">Commenta</button>
+	</form>
+
+	{% if allAnswer %}
+	{% for answers in allAnswer %}
+
+		<div class="card mb-2">
+			<div class="card-body">
+				{% if loggedInUser.id == answers.user_id %}
+					<h4 class="card-title" style="color: lightseagreen;">{{ answers.nome }} {{ answers.cognome }}</h4>
+				{% else %}
+					<h4 class="card-title" style="color: lightcoral;">{{ answers.nome }} {{ answers.cognome }}</h4>
+				{% endif %}
+
+				<p class="card-text">{{ answers.answer }}</p>
+
+				{% if loggedInUser.id == answers.user_id %}
+					<form method="post" class="right">
+						<input type="hidden" name="id" value="{{ answers.answer_id }}">
+						<input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger mt-2 circle" value="Elimina commento">
+					</form>
+				{% endif %}
+			</div>
+		</div>
+
+	{% endfor %}
+	{% else %}
+		<p>Nessun Commento</p>
+	{% endif %}
+
+{% endif %}
