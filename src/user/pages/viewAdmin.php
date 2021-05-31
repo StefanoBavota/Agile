@@ -1,9 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../../classes/Event.php';
 require_once __DIR__ . '/../../classes/UserManager.php';
 
-use App\Classes\Event;
 use App\Classes\UserManager;
 
 if (!defined('ROOT_URL')) {
@@ -19,11 +17,11 @@ if (isset($_GET['id'])) {
     $id = trim($_GET['id']);
 }
 
-$user = $userMgr->getUserById($id);
+$user = $userMgr->getUserByIdNoMusic($id)[0];
 
 if (isset($_POST['update'])) {
 
-    $userId = htmlspecialchars(trim($_POST['id']));
+    $userId = htmlspecialchars(trim($_POST['userId']));
     $nome = htmlspecialchars(trim($_POST['nome']));
     $cognome = htmlspecialchars(trim($_POST['cognome']));
     $email = htmlspecialchars(trim($_POST['email']));
@@ -32,7 +30,6 @@ if (isset($_POST['update'])) {
     $user = $userMgr->updateUserType($userId, $nome, $cognome, $email, $user_type_id);
 
     echo "<script>location.href='" . ROOT_URL . "user?page=admin&msg=updatedUserType';</script>";
-          
 }
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');

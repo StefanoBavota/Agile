@@ -1,4 +1,3 @@
-
 <div class="mt-5 mb-4">
     <a href="../{{ ROOT_URL }}user?page=admin" class="back underline scuro">&laquo; Lista Utenti</a>
 </div>
@@ -26,6 +25,7 @@
             <option {% if user.user_type_id == '2'%} {{ 'selected' }} {% endif %} value="2">Utente</option>
         </select>
     </div>
-    <input type="hidden" name="id" value="{{ user.id }}">
+
+    <input type="hidden" name="userId" value="{{ user.id }}">
     <input name="update" type="submit" class="btn btn-primary" value="Modifica Utente">
 </form>
