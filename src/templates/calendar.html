@@ -1,63 +1,54 @@
-<h2>Calendario</h2>
-<!-- Default dropend button -->
+<h2 class="mt-4">Calendario</h2>
 
-<nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
-  <a class="navbar-brand" href="#">Tutti gli eventi</a>
-  <ul class="nav nav-pills">
+<div class="mb-4 mt-4 mr-5">
+	<form method="post">
 
-    <form method="post" >
-      <select name ="mese">
-        <option value ="%">Tutti</option>
-        <option value ="01">Gennaio</option>
-        <option value ="02">Febbraio</option>
-        <option value ="03">Marzo</option>
-        <option value ="04">Aprile</option>
-        <option value ="05">Maggio</option>
-        <option value ="06">Giugno</option>
-        <option value ="07">Luglio</option>
-        <option value ="08">Agosto</option>
-        <option value ="09">Settembre</option>
-        <option value ="10">Ottobre</option>
-        <option value ="11">Novembre</option>
-        <option value ="12">Dicembre</option>
-      </select>
-      <select name ="anno">
-        <option value ="%">Tutti</option>
-        <option value ="2020">2020</option>
-        <option value ="2021">2021</option>
-        <option value ="2022">2022</option>
-        
-      </select>
-      <input name="filtra" type="submit" class="btn btn-danger mt-2 circle" value="Filtra">
+		<select name="mese">
+			<option value="%">Tutti</option>
+			<option value="01">Gennaio</option>
+			<option value="02">Febbraio</option>
+			<option value="03">Marzo</option>
+			<option value="04">Aprile</option>
+			<option value="05">Maggio</option>
+			<option value="06">Giugno</option>
+			<option value="07">Luglio</option>
+			<option value="08">Agosto</option>
+			<option value="09">Settembre</option>
+			<option value="10">Ottobre</option>
+			<option value="11">Novembre</option>
+			<option value="12">Dicembre</option>
+		</select>
 
+		<select name="anno" class="ml-2">
+			<option value="%">Tutti</option>
+			<option value="2021">2021</option>
+			<option value="2022">2022</option>
+		</select>
 
-    </form>
-
-</nav>
-<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
-
-
-    {% if calendarEvent %}
-        {% for events in calendarEvent %}
-
-         
-                <img src="{{ events.img }}" class="card-img" alt="..." style="width:100%; height: 20rem; object-fit: contain;">
-             
-                    <h5 class="card-title">{{ events.name }}</h5>
-                    <h5 class="card-title">Data: {{ events.data }}</h5>   
-  
-
-        {% endfor %}
-    {% else %}
-        <p>Nessun evento disponibile in questa data.</p>
-    {% endif %}
-
-
-  <h4 id="scrollspyHeading1"></h4>
-  <p>...</p>
- 
+		<input name="filtra" type="submit" class="btn btn-primary circle ml-2" value="Aggiungi filtro">
+	</form>
 </div>
 
 
+<div>
+
+	{% if calendarEvent %}
+	{% for event in calendarEvent %}
 
 
+	<div class="card mr-2 mb-2" style="width: 14rem;">
+		<div class="card-header">
+			<h5 class="card-title">Data: {{ event.data }}</h5>
+			<h5 class="card-title">{{ event.name }}</h5>
+		</div>
+		<a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event.id }}">
+			<img src="{{ event.img }}" class="card-img-top" alt="..." style="width:100%; height: 20rem; object-fit: contain;">
+		</a>
+	</div>
+
+	{% endfor %}
+	{% else %}
+	<p>Nessun evento disponibile in questa data.</p>
+	{% endif %}
+
+</div>

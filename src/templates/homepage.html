@@ -5,7 +5,7 @@
     {% if events %}
     {% for event in events %}
 
-    <div class="card mr-2 mb-2" style="width: 18rem;">
+    <div class="card mr-2 mb-2" style="width: 14rem;">
         <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event['id'] }}">
             <img src="{{ event.img }}" class="card-img-top" alt="..."
                 style="width:100%; height: 20rem; object-fit: contain;">
@@ -15,9 +15,7 @@
             <h5 class="card-title">Data: {{ event.data }}</h5>
             <h5 class="card-title">Posti: {{ event.posti }}</h5>
 
-            <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event['id'] }}" class="btn btn-primary">Visualizza</a>
-
-            <form method="post">
+            <form method="post" class="center-button">
                 <input type="hidden" name="id" value="{{ event.id }}">
                 {% if loggedInUser %}
                 <input name="addToFavourite" type="submit" class="btn btn-info mt-1" value="Aggiungi ai preferiti">
