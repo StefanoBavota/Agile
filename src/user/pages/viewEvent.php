@@ -29,11 +29,19 @@ if (isset($_SESSION['user'])) {
 
 if (isset($_POST['register'])) {
 
-    if(!$loggedInUser) {
+    if (!$loggedInUser) {
         $emailUns = htmlspecialchars(trim($_POST['email']));
         $addToRegister = $eventMgr->addToRegister($eventId, $emailUns);
+        $sub = "Mail dal Gruppo 6";
+        $msg = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue.";
+        $rec = $emailUns;
+        mail($rec, $sub, $msg);
     } else {
         $addToRegister = $eventMgr->addToRegister($eventId, $email);
+        $sub = "Mail dal Gruppo 6";
+        $msg = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod diam in augue aliquam, ac pulvinar ligula volutpat. Phasellus lobortis, ante vulputate porta faucibus, metus felis tempus nunc, vel pretium libero sem ut augue.";
+        $rec = $email;
+        mail($rec, $sub, $msg);
     }
 
     if (isset($addToRegister)) {
@@ -54,8 +62,7 @@ if (isset($_POST['remove'])) {
 }
 
 $allAnswer = $eventMgr->getCommentByEventId($eventId);
-
-$userName = $userMgr->getUserById($userId);
+$event = $eventMgr->getEventById($id)[0];
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
@@ -63,6 +70,5 @@ $twig = new \Twig\Environment($loader, []);
 echo $twig->render('viewEvent.html', [
     'event' => $event,
     'loggedInUser' => $loggedInUser,
-    'allAnswer' => $allAnswer,
-    'userName' => $userName
+    'allAnswer' => $allAnswer
 ]);
