@@ -6,12 +6,12 @@ $page = isset($_GET["page"]) ? $_GET["page"] : "homepage";
 <?php include '../inc/init.php' ?>
 <?php include ROOT_PATH . 'public/template-parts/header.php' ?>
 
-<?php if ($page == 'homepage') : ?>
-    <?php include ROOT_PATH . 'public/pages/carousel.php' ?>
-<?php endif; ?>
 
 <div id="main" class="container" style="margin-top: 100px; margin-bottom: 100px;">
-    <div class="row">
+<div><?php if ($page == 'homepage') : ?>
+    <?php include ROOT_PATH . 'public/pages/carousel.php' ?>
+<?php endif; ?></div> 
+<div class="row">
 
         <?php if (!$loggedInUser) : ?>
             <div class="col-md-12 col-xs-12">

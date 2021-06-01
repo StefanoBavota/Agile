@@ -78,6 +78,11 @@ class UserManager extends DBManager
 		$sql = "SELECT email FROM user WHERE id = $userId";
 		return $this->db->query($sql);
 	}
+	public function getMusicTypeById($userId)
+    {
+        $sql = "SELECT music_type_id FROM user WHERE id = $userId";
+        return $this->db->query($sql);
+    }
 
 	public function updateUser($userId, $nome, $cognome, $email, $musicType)
 	{

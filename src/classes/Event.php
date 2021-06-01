@@ -66,7 +66,6 @@ class Event extends DBManager
         $rowsDeleted = $this->db->execute($sql);;
         return (int) $rowsDeleted;
     }
-    // Funzione inserimento evento selezionato nella tabella favoriti
     public function addToFavoriteList($eventId, $userId)
     {
         $sql = "INSERT INTO favorites (eventi_id, user_id) VALUES ($eventId, $userId)";
@@ -120,6 +119,21 @@ class Event extends DBManager
     public function getAllMusicType()
     {
         $sql = "SELECT * FROM music_type";
+        return $this->db->query($sql);
+    }
+
+    public function getFeaturedEvents() {
+        $sql = "SELECT * FROM eventi WHERE id > (SELECT MAX(id) - 3 FROM eventi)";
+        return $this->db->query($sql);
+    }
+    public function getPrefGenders($userEmail){
+        $sql="SELECT eventi.music_type_id from register inner join eventi ON eventi.id=register.eventi_id where email=$userEmail ";
+        return $this->db->query($sql);
+    }
+    
+    public function getUserMusicType($music)
+    {
+        $sql = "SELECT * FROM eventi where music_type_id='$music'";
         return $this->db->query($sql);
     }
 }
