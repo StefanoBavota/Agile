@@ -1,6 +1,6 @@
 <h2 class="mt-4">Calendario</h2>
 
-<div class="mb-4 mt-4 mr-5">
+<div class="mb-5 mt-4 mr-5">
 	<form method="post">
 
 		<select name="mese">
@@ -30,19 +30,20 @@
 </div>
 
 
-<div>
+<div class="row">
 
 	{% if calendarEvent %}
 	{% for event in calendarEvent %}
 
 
 	<div class="card mr-2 mb-2" style="width: 14rem;">
-		<div class="card-header">
+		<div class="mt-2">
 			<h5 class="card-title">Data: {{ event.data }}</h5>
 			<h5 class="card-title">{{ event.name }}</h5>
 		</div>
 		<a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event.id }}">
-			<img src="{{ event.img }}" class="card-img-top" alt="..." style="width:100%; height: 20rem; object-fit: contain;">
+			<img src="{{ event.img }}" class="card-img-top" alt="..."
+				style="width:100%; height: 20rem; object-fit: contain;">
 		</a>
 	</div>
 
