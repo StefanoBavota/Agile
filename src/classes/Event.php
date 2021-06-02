@@ -39,18 +39,18 @@ class Event extends DBManager
     }
     public function getCurrentRegisterEvent($email)
     {
-        $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' ORDER by data";
+        $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' WHERE eventi.data > CURRENT_DATE ORDER by data";
         return $this->db->query($sql);
     }
     public function filterCalendar($email, $anno, $mese)
     {
-        $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' where eventi.data LIKE '$anno-$mese-%' ORDER by data";
+        $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' where eventi.data LIKE '$anno-$mese-%' AND eventi.data > CURRENT_DATE ORDER by data";
         return $this->db->query($sql);
     }
 
     public function getAllEvent()
     {
-        $sql = "SELECT * FROM eventi";
+        $sql = "SELECT * FROM eventi ";
         return $this->db->query($sql);
     }
 
@@ -134,6 +134,12 @@ class Event extends DBManager
     public function getUserMusicType($music)
     {
         $sql = "SELECT * FROM eventi where music_type_id='$music'";
+        return $this->db->query($sql);
+    }
+
+    public function getCurrentHistoricEvent($email)
+    {
+        $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' WHERE eventi.data < CURRENT_DATE ORDER by data";
         return $this->db->query($sql);
     }
 }
