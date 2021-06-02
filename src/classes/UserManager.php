@@ -97,6 +97,12 @@ class UserManager extends DBManager
 		return $this->db->query($sql);
 	}
 
+	public function getMusicTypeById($userId)
+    {
+        $sql = "SELECT music_type_id FROM user WHERE id = $userId";
+        return $this->db->query($sql);
+    }
+
 	// Private Methods
 	private function _setUser($user)
 	{

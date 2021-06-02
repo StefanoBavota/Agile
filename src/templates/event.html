@@ -1,30 +1,32 @@
-<h2>Modifica o Elimina un evento</h2>
+<h2 class="mt-4">Modifica o Elimina un evento</h2>
 
 <div class="row">
 
     {% if events %}
-        {% for event in events %}
+    {% for event in events %}
 
-            <div class="card mr-2 mt-2" style="width: 14rem;">
-                <img src="{{ event.img }}" class="card-img-top" alt="..." style="width:100%; height: 20rem; object-fit: contain;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ event.name }}</h5>
-                    <h5 class="card-title">Data: {{ event.data }}</h5>
-                    <h5 class="card-title">Posti: {{ event.posti }}</h5>
-                    <h5 class="card-title">Info:</h5>
-                    <a href="../{{ ROOT_URL }}user?page=editEvent&id={{ event['id'] }}" class="btn btn-primary">Modifica</a><br>
-                    <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event['id'] }}" class="btn btn-primary mt-1">Visualizza</a>
-                    <form method="post" class="right">
-                        <input type="hidden" name="id" value="{{ event.id }}">
-                        <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger mt-1 circle" value="Rimuovi Evento">
-                    </form>
-                </div>
-            </div>
+    <div class="card mr-2 mt-2" style="width: 14rem;">
+        <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event.id }}">
+            <img src="{{ event.img }}" class="card-img-top" alt="..."
+                style="width:100%; height: 20rem; object-fit: contain;">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">{{ event.name }}</h5>
+            <h5 class="card-title">Data: {{ event.data }}</h5>
+            <h5 class="card-title">Posti: {{ event.posti }}</h5>
+            <a href="../{{ ROOT_URL }}user?page=editEvent&id={{ event['id'] }}" class="btn btn-primary">Modifica</a><br>
+            <form method="post" class="right">
+                <input type="hidden" name="id" value="{{ event.id }}">
+                <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit"
+                    class="btn btn-danger mt-1 circle" value="Rimuovi Evento">
+            </form>
+        </div>
+    </div>
 
-        {% endfor %}
+    {% endfor %}
     {% else %}
-        <h5 class="mt-5">Nessun Evento disponibile...</h5>
-        <a class="underline scuro" href="../{{ ROOT_URL }}user?page=createEvent">Crea un evento! &raquo;</a>
+    <h5 class="mt-5">Nessun Evento disponibile...</h5>
+    <a class="underline scuro" href="../{{ ROOT_URL }}user?page=createEvent">Crea un evento! &raquo;</a>
     {% endif %}
 
 </div>
