@@ -128,17 +128,4 @@ class Event extends DBManager
         $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' WHERE eventi.data < CURRENT_DATE ORDER by data";
         return $this->db->query($sql);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
