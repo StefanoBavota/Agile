@@ -41,6 +41,3 @@ class AdminTest extends TestCase
         
     }
 }
-
-
-
