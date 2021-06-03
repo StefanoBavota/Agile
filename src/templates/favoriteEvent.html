@@ -13,7 +13,6 @@
             <h5 class="card-title">{{ event.name }}</h5>
             <h5 class="card-title">Data: {{ event.data }}</h5>
             <h5 class="card-title">Posti: {{ event.posti }}</h5>
-            <h5 class="card-title">Info:</h5>
             <form method="post" class="right">
                 <input type="hidden" name="id" value="{{ event.id }}">
                 <input name="remove_fav" onclick="return confirm('Procedere ad eliminare?');" type="submit"

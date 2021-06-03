@@ -107,7 +107,7 @@ class Event extends DBManager
 
     public function getCommentByEventId($eventId)
     {
-        $sql = "SELECT argument.id AS answer_id, answer, eventi_id, user_id, nome, cognome FROM argument INNER JOIN user on user_id = user.id WHERE eventi_id = $eventId";
+        $sql = "SELECT argument.id AS answer_id, answer, eventi_id, user_id, nome, cognome FROM argument INNER JOIN user on user_id = user.id WHERE eventi_id = $eventId ORDER by argument.id DESC";
         return $this->db->query($sql);
     }
 
