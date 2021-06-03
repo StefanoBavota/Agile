@@ -5,8 +5,10 @@
     {% for event in historicEvent %}
 
     <div class="card mr-2 mt-2" style="width: 14rem;">
-        <img src="{{ event.img }}" class="card-img-top" alt="..."
-            style="width:100%; height: 20rem; object-fit: contain;">
+        <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event.eventi_id }}">
+            <img src="{{ event.img }}" class="card-img-top" alt="..."
+                style="width:100%; height: 20rem; object-fit: contain;">
+        </a>
         <div class="card-body">
             <h5 class="card-title">{{ event.name }}</h5>
             <h5 class="card-title">Data: {{ event.data }}</h5>
