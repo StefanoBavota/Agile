@@ -29,14 +29,14 @@ class RegisterEventTest extends TestCase
     {
         $eventMgr = new Event();
 
-        $event = ['img' => 'image', 'name' => 'test', 'description' => 'test2', 'data' => '2021-06-24', 'posti' => 66, 'user_id' => '1', 'music_type_id' => '2'];
-        $eventMgr->createEvent($event['img'], $event['name'], $event['description'], $event['data'], $event['posti'], $event['user_id'], $event['music_type_id']);
+        $event = ['img' => 'image', 'name' => 'test', 'description' => 'test2', 'data' => '2021-06-24', 'posti' => '66', 'user_id' => '1', 'music_type_id' => '2', 'email' => 'aaa@.it'];
+        $eventMgr->createEvent($event['img'], $event['name'], $event['description'], $event['data'], $event['posti'] + 1, $event['user_id'], $event['music_type_id']);
 
-        $addToRegisterEvent = $eventMgr->addToRegister(1, 'aaa@.it');
-
+        $eventMgr->addToRegister(1, 'aaa@.it');
         $calendarEvent = $eventMgr->getCurrentRegisterEvent('aaa@.it')[0];
 
         unset($calendarEvent['eventi_id']);
+        unset($calendarEvent['id']);
         $this->assertEquals($event, $calendarEvent);
     }
 }
