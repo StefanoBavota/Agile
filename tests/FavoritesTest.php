@@ -3,6 +3,8 @@
 use PHPUnit\Framework\TestCase;
 use App\Classes\Event;
 
+use function PHPUnit\Framework\assertEquals;
+
 require_once __DIR__ . '/../src/classes/Event.php';
 require_once __DIR__ . '/../src/inc/init.php';
 
@@ -40,4 +42,32 @@ class FavoritesTest extends TestCase
         unset($favEvent['eventi_id']);
         $this->assertEquals($event, $favEvent);
     }
+    
+    public function test_ultimeAggiunte()
+    {
+        $eventMgr = new Event();
+
+        $event = ['img' => 'image', 'name' => 'testAgo', 'description' => 'test2', 'data' => '2021-05-24', 'posti' => 66, 'user_id' => 1, 'music_type_id' => 1];
+        $eventMgr->createEvent($event['img'], $event['name'], $event['description'], $event['data'], $event['posti'], $event['user_id'], $event['music_type_id']);
+        $Result = $eventMgr->getFeaturedEvents(1)[0];
+        
+        unset($Result['id']);
+        $this->assertEquals($event, $Result);
+    }
+    
+    public function test_generePreferito()
+    {
+        $eventMgr = new Event();
+
+        $event = ['img' => 'image', 'name' => 'testAgo', 'description' => 'test2', 'data' => '2021-05-24', 'posti' => 66, 'user_id' => 1, 'music_type_id' => 1];
+        $eventMgr->createEvent($event['img'], $event['name'], $event['description'], $event['data'], $event['posti'], $event['user_id'], $event['music_type_id']);
+        $Result = $eventMgr->getUserMusicType(1)[0];
+        
+        unset($Result['id']);
+        $this->assertEquals($event, $Result);
+    }
+
+
+
+
 }
