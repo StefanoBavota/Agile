@@ -21,6 +21,7 @@ $email = $emailUsm->getEmailById($userId)[0]['email'];
 
 $historicEvent = $eventMgr->getCurrentHistoricEvent($email);
 
+
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
 
