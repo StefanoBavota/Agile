@@ -2,11 +2,13 @@
 
 use PHPUnit\Framework\TestCase;
 use App\Classes\Event;
+use App\Classes\UserManager;
 
 require_once __DIR__ . '/../src/classes/Event.php';
+require_once __DIR__ . '/../src/classes/UserManager.php';
 require_once __DIR__ . '/../src/inc/init.php';
 
-class CreateEventTest extends TestCase
+class CreateCommentTest extends TestCase
 {
     public function test_prova()
     {
@@ -25,15 +27,18 @@ class CreateEventTest extends TestCase
         }
     }
 
-    public function test_createEvent()
+    public function test_addComment()
     {
         $eventMgr = new Event();
+        $userMgr = new UserManager;
 
-        $event = ['img' => 'image', 'name' => 'test', 'description' => 'test2', 'data' => '2021-05-24', 'posti' => 66, 'user_id' => 1, 'music_type_id' => 1];
-        $eventMgr->createEvent($event['img'], $event['name'], $event['description'], $event['data'], $event['posti'], $event['user_id'], $event['music_type_id']);
-        $dbEvent = $eventMgr->getEventByIdTest(1)[0];
-        
-        unset($dbEvent['id']);
-        $this->assertEquals($event, $dbEvent);
+        $user = $userMgr->register('Mario', 'Rossi', 'mariorossi@test.it', md5('password'), 1);
+
+        $comment = ['answer' => 'ciao', 'eventi_id' => "1", 'user_id' => $user['id'], 'nome' => 'Mario', 'cognome' => 'Rossi'];
+        $eventMgr->addComment($comment['answer'], $comment['eventi_id'], $comment['user_id']);
+        $dbComment = $eventMgr->getCommentByEventId($comment['eventi_id'])[0];
+
+        unset($dbComment['answer_id']);
+        $this->assertEquals($comment, $dbComment);
     }
 }
