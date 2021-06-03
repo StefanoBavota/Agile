@@ -1,4 +1,4 @@
-<h2>Lista Preferiti</h2>
+<h2 class="mt-4">Lista Preferiti</h2>
 <div class="row">
 
     {% if favoriteEvent %}
@@ -13,7 +13,6 @@
             <h5 class="card-title">{{ event.name }}</h5>
             <h5 class="card-title">Data: {{ event.data }}</h5>
             <h5 class="card-title">Posti: {{ event.posti }}</h5>
-            <h5 class="card-title">Info:</h5>
             <form method="post" class="right">
                 <input type="hidden" name="id" value="{{ event.id }}">
                 <input name="remove_fav" onclick="return confirm('Procedere ad eliminare?');" type="submit"

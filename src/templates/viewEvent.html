@@ -50,7 +50,7 @@
 
 		<p class="card-text">{{ answers.answer }}</p>
 
-		{% if loggedInUser.id == answers.user_id %}
+		{% if (loggedInUser.id == answers.user_id) or loggedInUser.is_admin %}
 		<form method="post" class="right">
 			<input type="hidden" name="id" value="{{ answers.answer_id }}">
 			<input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit"

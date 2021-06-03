@@ -1,0 +1,41 @@
+<h2>Suggeriti per te</h2>
+<div class="row mb-5">
+
+    {% if suggestedEvents %}
+    {% for event in suggestedEvents %}
+
+    <div class="card mr-2 mt-1" style="width: 14rem;">
+        <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event.id }}">
+            <img src="{{ event.img }}" class="card-img-top" alt="..."
+                style="width: 100%; height: 20rem; object-fit: cover;">
+        </a>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+
+</div>
+
+<h2>Ultimi aggiunti</h2>
+<div class="row mb-5">
+
+    {% if events %}
+    {% for event in events %}
+
+    <div class="card mr-2 mt-1" style="width: 14rem;">
+        <a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event.id }}">
+            <div class="bottom-left">
+                <img src="https://www.icripi.edu.it/wp-content/uploads/2020/06/new-png-transparent.png" alt=""
+                    style="width: 70px; height: 70px;">
+            </div>
+            <div style="width: 100%;">
+                <img src="{{ event.img }}" class="card-img-top" alt="..."
+                    style="width: 100%; height: 20rem; object-fit: cover;">
+            </div>
+        </a>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+
+</div>

@@ -37,11 +37,13 @@ class Event extends DBManager
         $sql = "SELECT * FROM eventi WHERE id = $id;";
         return $this->db->query($sql);
     }
+
     public function getCurrentRegisterEvent($email)
     {
         $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' WHERE eventi.data > CURRENT_DATE ORDER by data";
         return $this->db->query($sql);
     }
+
     public function filterCalendar($email, $anno, $mese)
     {
         $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' where eventi.data LIKE '$anno-$mese-%' AND eventi.data > CURRENT_DATE ORDER by data";
@@ -66,6 +68,7 @@ class Event extends DBManager
         $rowsDeleted = $this->db->execute($sql);;
         return (int) $rowsDeleted;
     }
+
     // Funzione inserimento evento selezionato nella tabella favoriti
     public function addToFavoriteList($eventId, $userId)
     {
@@ -99,6 +102,7 @@ class Event extends DBManager
             echo "<script type='text/javascript'>alert('Ti sei già registrato');</script>";
         }
     }
+
     public function addComment($answer, $eventId, $userId)
     {
         $sql = "INSERT INTO argument (answer, eventi_id, user_id) VALUES ('$answer', $eventId, $userId)";
@@ -107,7 +111,7 @@ class Event extends DBManager
 
     public function getCommentByEventId($eventId)
     {
-        $sql = "SELECT argument.id AS answer_id, answer, eventi_id, user_id, nome, cognome FROM argument INNER JOIN user on user_id = user.id WHERE eventi_id = $eventId";
+        $sql = "SELECT argument.id AS answer_id, answer, eventi_id, user_id, nome, cognome FROM argument INNER JOIN user on user_id = user.id WHERE eventi_id = $eventId ORDER by argument.id DESC";
         return $this->db->query($sql);
     }
 
@@ -129,16 +133,15 @@ class Event extends DBManager
         return $this->db->query($sql);
     }
 
+    public function getFeaturedEvents()
+    {
+        $sql = "SELECT * FROM eventi ORDER by id DESC LIMIT 6";
+        return $this->db->query($sql);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    public function getUserMusicType($music)
+    {
+        $sql = "SELECT * FROM eventi WHERE music_type_id='$music' LIMIT 6";
+        return $this->db->query($sql);
+    }
 }
