@@ -86,7 +86,7 @@ class Event extends DBManager
         return $this->db->query($sql);
     }
 
-    public function addToRegister($eventId, $email)
+    public function addToRegister($eventId, $email, $nome, $data)
     {
         $sqlCheck = "SELECT * FROM register WHERE eventi_id = $eventId AND email = '$email'";
         $check = $this->db->query($sqlCheck);
@@ -94,6 +94,13 @@ class Event extends DBManager
         $sql = "INSERT INTO register (eventi_id, email) VALUES ($eventId, '$email')";
 
         if (!$check) {
+            //send email
+            $sub = "Mail dal Gruppo 6";
+            $msg = "Ti sei registrato al concerto di: " . $nome . " che si terra' in data: " . $data;
+            $rec = $email;
+            mail($rec, $sub, $msg);
+
+            //query update after check
             $decrese = "UPDATE eventi SET posti = posti -1 WHERE id = $eventId";
             $this->db->execute($decrese);
             return $this->db->execute($sql);

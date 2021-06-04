@@ -36,17 +36,9 @@ if (isset($_POST['register'])) {
 
     if (!$loggedInUser) {
         $emailUns = htmlspecialchars(trim($_POST['email']));
-        $addToRegister = $eventMgr->addToRegister($eventId, $emailUns);
-        $sub = "Mail dal Gruppo 6";
-        $msg = "Ti sei registrato al concerto di: " . $nome . " che si terra' in data: " . $data;
-        $rec = $emailUns;
-        mail($rec, $sub, $msg);
+        $addToRegister = $eventMgr->addToRegister($eventId, $emailUns, $nome, $data);
     } else {
-        $addToRegister = $eventMgr->addToRegister($eventId, $email);
-        $sub = "Mail dal Gruppo 6";
-        $msg = "Ti sei registrato al concerto di: " . $nome . " che si terra' in data: " . $data;
-        $rec = $email;
-        mail($rec, $sub, $msg);
+        $addToRegister = $eventMgr->addToRegister($eventId, $email, $nome, $data);
     }
 
     if (isset($addToRegister)) {
