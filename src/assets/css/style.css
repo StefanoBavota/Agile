@@ -70,9 +70,9 @@ body {
   left: 16px;
 }
 
-/* .banner {
-  height: 900px !important;
-} */
+.banner {
+  height: 100vh !important;
+}
 
 /* ------------------------------------------------------------------------------
 	 Footer
