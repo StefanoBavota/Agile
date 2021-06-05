@@ -27,24 +27,24 @@
 
 		<input name="filtra" type="submit" class="btn btn-primary circle ml-2" value="Aggiungi filtro">
 	</form>
+
+	<form method="post" action="../classes/download-ics.php">
+		<input type="submit" value="Add to Calendar">
+	</form>
 </div>
 
-
 <div class="row">
-
 	{% if calendarEvent %}
 	{% for event in calendarEvent %}
-
-
 	<div class="card mr-2 mb-2" style="width: 14rem;">
 		<div class="mt-2">
 			<h5 class="card-title">Data: {{ event.data }}</h5>
 			<h5 class="card-title">{{ event.name }}</h5>
 		</div>
 		<a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event.eventi_id }}">
-            <img src="{{ event.img }}" class="card-img-top" alt="..."
-                style="width:100%; height: 20rem; object-fit: contain;">
-        </a>
+			<img src="{{ event.img }}" class="card-img-top" alt="..."
+				style="width:100%; height: 20rem; object-fit: contain;">
+		</a>
 	</div>
 
 	{% endfor %}

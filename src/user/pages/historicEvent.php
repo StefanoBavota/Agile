@@ -6,6 +6,8 @@ require_once __DIR__ . '/../../classes/UserManager.php';
 use App\Classes\Event;
 use App\Classes\UserManager;
 
+require_once(AUTOLOAD_PATH);
+
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
