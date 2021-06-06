@@ -39,10 +39,13 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					{% if loggedInUser %}
 					<li class="nav-item">
-						<a class="nav-link" href="../{{ ROOT_URL }}user?page=calendar">Calendario</a>
+						<a class="nav-link" href="../{{ ROOT_URL }}public?page=allEvent">Eventi</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="../{{ ROOT_URL }}user?page=favoriteEvent">Preferiti</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../{{ ROOT_URL }}user?page=calendar">Calendario</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="../{{ ROOT_URL }}user?page=historicEvent">Storico</a>

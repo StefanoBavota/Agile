@@ -1,6 +1,17 @@
-<h2>Eventi</h2>
+<h2 class="mt-5">Tutti gli eventi</h2>
 
 <div class="row">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% for pageNumber in pagesNumber %}
+            <li class="page-item">
+                <a class="btn btn-primary ml-1 mt-2" role="button" href="../{{ ROOT_URL }}public?page=allEvent&pagination={{pageNumber}}">
+                    {{ pageNumber + 1 }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
 
     {% if events %}
     {% for event in events %}
@@ -31,4 +42,15 @@
     <a class="underline scuro" href="../{{ ROOT_URL }}user?page=createEvent">Crea un evento! &raquo;</a>
     {% endif %}
 
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% for pageNumber in pagesNumber %}
+            <li class="page-item">
+                <a class="btn btn-primary ml-1 mt-2" role="button" href="../{{ ROOT_URL }}public?page=allEvent&pagination={{pageNumber}}">
+                    {{ pageNumber + 1 }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
 </div>

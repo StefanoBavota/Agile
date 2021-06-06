@@ -25,7 +25,7 @@ if (isset($_POST['remove'])) {
 }
 
 if (isset($loggedInUser)) {
-    $favoriteEvent = $eventMgr->getCurrentUserFavorites($userId);
+    $favoriteEvent = $eventMgr->getCurrentUserFavoritesHomepage($userId);
 
     $loader = new \Twig\Loader\FilesystemLoader('../templates');
     $twig = new \Twig\Environment($loader, []);
