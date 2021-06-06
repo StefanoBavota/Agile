@@ -15,8 +15,13 @@ class DB
   public function __construct()
   {
     //$this->conn = new PDO('mysql:dbname='. $_ENV['DB_DATABASE'] .';host=' . $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
-    $this->conn = new PDO('mysql:dbname=' . getenv('DB_DATABASE') . ';host=' . getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
-    $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    try {
+      $this->conn = new PDO('mysql:dbname=' . getenv('DB_DATABASE') . ';host=' . getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
+      $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      return true;
+    } catch (PDOException $e) {
+      return false;
+    }
   }
 
   public function query($sql)
@@ -35,7 +40,7 @@ class DB
       return false;
     }
   }
- 
+  
   public function delete_one($tableName, $id)
   {
       $query = "DELETE FROM $tableName WHERE id = $id";
@@ -45,7 +50,7 @@ class DB
       $createdUser['id'] = $this->conn->lastInsertId();
       return $createdUser;
   }
-    
+
   public function insert_one($tableName, $columns = array())
   {
 
@@ -70,4 +75,3 @@ class DB
     return $createdUser;
   }
 }
-
