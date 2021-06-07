@@ -13,12 +13,14 @@ require_once(AUTOLOAD_PATH);
 $eventMgr = new Event();
 $errMsg = '';
 
+//paginazione
 $pagination = 0;
 if (isset($_GET['pagination'])) {
     $pagination = intval($_GET['pagination']);
 }
 
 $events = $eventMgr->getEventHomepagePaginated($pagination);
+//end paginazione
 
 if (isset($_POST['addToFavourite'])) {
     $userId = $loggedInUser->id;
@@ -30,11 +32,13 @@ if (isset($_POST['addToFavourite'])) {
     }
 }
 
+//paginazione
 $pagesNumber = $eventMgr->countEventHomepagePages();
 $pagesNumbersList = array();
 for($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
     array_push($pagesNumbersList, $pageNumber);
 }
+//end paginazione
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
