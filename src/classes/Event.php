@@ -68,6 +68,12 @@ class Event extends DBManager
         return intval($this->db->query($sql)[0]['events_amount']) / 12;
     }
 
+    //aggiunti
+    public function countEventFavoritesPages() {
+        $sql = "SELECT count(*) as favorites_amount FROM favorites";
+        return intval($this->db->query($sql)[0]['favorites_amount']) / 12;
+    }
+
     public function editEvent($id, $img, $name, $description, $data, $posti, $musicType)
     {
         $sql = "UPDATE eventi SET img = '$img', name = '$name', description = '$description', data = '$data', posti = posti+$posti, music_type_id = $musicType  WHERE id = $id";
@@ -92,9 +98,16 @@ class Event extends DBManager
         return array('error' => '');
     }
 
-    public function getCurrentUserFavorites($userId)
+    /*public function getCurrentUserFavorites($userId)
     {
         $sql = "SELECT * FROM eventi INNER JOIN favorites ON favorites.eventi_id = eventi.id AND favorites.user_id = $userId";
+        return $this->db->query($sql);
+    }*/
+
+    public function getCurrentUserFavorites($userId, $paginated)
+    {
+        $offset = 12 * $paginated;
+        $sql = "SELECT * FROM eventi INNER JOIN favorites ON favorites.eventi_id = eventi.id AND favorites.user_id = $userId OFFSETT LIMIT $offset, 12";
         return $this->db->query($sql);
     }
 
