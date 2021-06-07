@@ -26,7 +26,7 @@ if (isset($_POST['remove_fav'])) {
     $eventMgr->delete_favorite($eventId, $userId);
 }
 
-$favoriteEvent = $eventMgr->getCurrentUserFavorites($userId, $paginated);
+$favoriteEvent = $eventMgr->getCurrentUserFavorites($userId, $pagination);
 
 //paginazione
 $pagesNumber = $eventMgr->countEventFavoritesPages();

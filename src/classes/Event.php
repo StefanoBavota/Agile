@@ -107,7 +107,7 @@ class Event extends DBManager
     public function getCurrentUserFavorites($userId, $paginated)
     {
         $offset = 12 * $paginated;
-        $sql = "SELECT * FROM eventi INNER JOIN favorites ON favorites.eventi_id = eventi.id AND favorites.user_id = $userId OFFSETT LIMIT $offset, 12";
+        $sql = "SELECT * FROM eventi INNER JOIN favorites ON favorites.eventi_id = eventi.id AND favorites.user_id = $userId LIMIT $offset, 12";
         return $this->db->query($sql);
     }
 
