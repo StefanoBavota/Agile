@@ -1,8 +1,6 @@
 <?php
-require_once __DIR__ . '/../../classes/Event.php';
 require_once __DIR__ . '/../../classes/UserManager.php';
 
-use App\Classes\Event;
 use App\Classes\UserManager;
 
 if (!defined('ROOT_URL')) {
@@ -12,8 +10,12 @@ if (!defined('ROOT_URL')) {
 require_once(AUTOLOAD_PATH);
 
 global $alertMsg;
-$eventMgr = new Event();
 $userMgr = new UserManager();
+
+if (isset($_POST['delete'])) {
+    $id = trim($_POST['id']);
+    $userMgr->delete($id);
+}
 
 $users = $userMgr->getAllUser();
 

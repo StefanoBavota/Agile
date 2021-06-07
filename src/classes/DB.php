@@ -40,6 +40,16 @@ class DB
       return false;
     }
   }
+  
+  public function delete_one($tableName, $id)
+  {
+      $query = "DELETE FROM $tableName WHERE id = $id";
+
+      $stmt = $this->conn->query($query);
+      if (!$stmt) return null;
+      $createdUser['id'] = $this->conn->lastInsertId();
+      return $createdUser;
+  }
 
   public function insert_one($tableName, $columns = array())
   {
