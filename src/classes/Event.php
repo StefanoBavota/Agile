@@ -227,4 +227,3 @@ class Event extends DBManager
         return $this->db->query($sql);
     }
 }
-
