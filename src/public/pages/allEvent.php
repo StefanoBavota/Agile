@@ -9,7 +9,7 @@ if (!defined('ROOT_URL')) {
 }
 
 require_once(AUTOLOAD_PATH);
-$variabile=1;
+$variabile = 1;
 $eventMgr = new Event();
 $errMsg = '';
 
@@ -35,22 +35,18 @@ if (isset($_POST['filtra'])) {
 
     $mese = htmlspecialchars(trim($_POST['mese']));
     $anno = htmlspecialchars(trim($_POST['anno']));
-    $variabile=0;
 
-    $events= $eventMgr->filterEvent($anno, $mese);
+    if ($mese != "%") {
+        $variabile = 0;
+
+        $events = $eventMgr->filterEvent($anno, $mese);
+    }
 }
-
-
-
 
 $pagesNumbersList = array();
-for($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
+for ($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
     array_push($pagesNumbersList, $pageNumber);
 }
-
-
-
-
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
@@ -59,5 +55,5 @@ echo $twig->render('allEvent.html', [
     'events' => $events,
     'loggedInUser' => $loggedInUser,
     'pagesNumber' => $pagesNumbersList,
-    'var'=>$variabile
+    'var' => $variabile
 ]);

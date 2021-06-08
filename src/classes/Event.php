@@ -49,9 +49,9 @@ class Event extends DBManager
         $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' where eventi.data LIKE '$anno-$mese-%' AND eventi.data >= CURRENT_DATE ORDER by data";
         return $this->db->query($sql);
     }
+
     public function filterEvent($anno, $mese)
     {
-     
         $sql = "SELECT * FROM eventi where eventi.data LIKE '$anno-$mese-%' ORDER by data";
         return $this->db->query($sql);
     }
@@ -63,13 +63,14 @@ class Event extends DBManager
     }
 
     public function getEventHomepagePaginated($paginated)
-    {   
+    {
         $offset = 12 * $paginated;
         $sql = "SELECT * FROM eventi OFFSETT LIMIT $offset, 12";
         return $this->db->query($sql);
     }
 
-    public function countEventHomepagePages() {
+    public function countEventHomepagePages()
+    {
         $sql = "SELECT count(*) as events_amount FROM eventi";
         return intval($this->db->query($sql)[0]['events_amount']) / 12;
     }
