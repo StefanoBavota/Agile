@@ -39,7 +39,7 @@
 	{% for event in calendarEvent %}
 	<div class="card mr-2 mb-2" style="width: 14rem;">
 		<div class="">
-			<h5 class="card-title">Data: {{ event.data }}</h5>
+			<h5 class="card-title">Data: {{ event.data|date("d/M/Y") }}</h5>
 			<h5 class="card-title">{{ event.name }}</h5>
 		</div>
 		<a href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event.eventi_id }}">
