@@ -166,13 +166,13 @@ class Event extends DBManager
 
     public function getFeaturedEvents()
     {
-        $sql = "SELECT * FROM eventi ORDER by id DESC LIMIT 6";
+        $sql = "SELECT * FROM eventi ORDER by id DESC LIMIT 5";
         return $this->db->query($sql);
     }
 
     public function getUserMusicType($music)
     {
-        $sql = "SELECT * FROM eventi WHERE music_type_id='$music' LIMIT 6";
+        $sql = "SELECT * FROM eventi WHERE music_type_id='$music' LIMIT 5";
         return $this->db->query($sql);
     }
 }
