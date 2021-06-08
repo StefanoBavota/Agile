@@ -9,7 +9,7 @@ if (!defined('ROOT_URL')) {
 }
 
 require_once(AUTOLOAD_PATH);
-
+$variabile=1;
 $eventMgr = new Event();
 $errMsg = '';
 
@@ -19,6 +19,7 @@ if (isset($_GET['pagination'])) {
 }
 
 $events = $eventMgr->getEventHomepagePaginated($pagination);
+$pagesNumber = $eventMgr->countEventHomepagePages();
 
 if (isset($_POST['addToFavourite'])) {
     $userId = $loggedInUser->id;
@@ -30,11 +31,26 @@ if (isset($_POST['addToFavourite'])) {
     }
 }
 
-$pagesNumber = $eventMgr->countEventHomepagePages();
+if (isset($_POST['filtra'])) {
+
+    $mese = htmlspecialchars(trim($_POST['mese']));
+    $anno = htmlspecialchars(trim($_POST['anno']));
+    $variabile=0;
+
+    $events= $eventMgr->filterEvent($anno, $mese);
+}
+
+
+
+
 $pagesNumbersList = array();
 for($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
     array_push($pagesNumbersList, $pageNumber);
 }
+
+
+
+
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
@@ -42,5 +58,6 @@ $twig = new \Twig\Environment($loader, []);
 echo $twig->render('allEvent.html', [
     'events' => $events,
     'loggedInUser' => $loggedInUser,
-    'pagesNumber' => $pagesNumbersList
+    'pagesNumber' => $pagesNumbersList,
+    'var'=>$variabile
 ]);

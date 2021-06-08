@@ -1,7 +1,38 @@
 <h2 class="mt-5">Tutti gli eventi</h2>
 
 <div class="row">
+
+    <div style="right: 70%; " >
+        <form method="post">
+
+        <select name="mese">
+            <option value="%">Tutti</option>
+            <option value="01">Gennaio</option>
+            <option value="02">Febbraio</option>
+            <option value="03">Marzo</option>
+            <option value="04">Aprile</option>
+            <option value="05">Maggio</option>
+            <option value="06">Giugno</option>
+            <option value="07">Luglio</option>
+            <option value="08">Agosto</option>
+            <option value="09">Settembre</option>
+            <option value="10">Ottobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Dicembre</option>
+        </select>
+
+        <select name="anno" class="ml-2">
+            <option value="%">Tutti</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+        </select>
+
+        <input name="filtra" type="submit" class="btn btn-primary circle ml-2" value="Aggiungi filtro">
+    </form>
+</div>
     <nav aria-label="Page navigation example">
+        
+        {% if(var)%}
         <ul class="pagination">
             {% for pageNumber in pagesNumber %}
             <li class="page-item">
@@ -11,6 +42,8 @@
             </li>
             {% endfor %}
         </ul>
+        {% endif %}
+
     </nav>
 
     {% if events %}
@@ -43,6 +76,7 @@
     {% endif %}
 
     <nav aria-label="Page navigation example">
+        {% if(var)%}
         <ul class="pagination">
             {% for pageNumber in pagesNumber %}
             <li class="page-item">
@@ -52,5 +86,6 @@
             </li>
             {% endfor %}
         </ul>
+        {% endif %}
     </nav>
 </div>
