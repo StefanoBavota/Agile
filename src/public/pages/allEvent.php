@@ -37,7 +37,7 @@ if (isset($_POST['filtra'])) {
     $mese = htmlspecialchars(trim($_POST['mese']));
     $anno = htmlspecialchars(trim($_POST['anno']));
 
-    if ($mese != "%") {
+    if ($mese != "%" or $anno != "%") {
         $variabile = 0;
 
         $events = $eventMgr->filterEvent($anno, $mese);
