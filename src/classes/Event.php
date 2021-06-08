@@ -87,6 +87,7 @@ class Event extends DBManager
         $sql = "SELECT count(*) as events_amount FROM eventi";
         return intval($this->db->query($sql)[0]['events_amount']) / 12;
     }
+
     //aggiunti
     public function countEventFavoritesPages()
     {
@@ -176,6 +177,11 @@ class Event extends DBManager
         $offset = 6 * $paginated;
         $sql = "SELECT argument.id AS answer_id, answer, eventi_id, user_id, nome, cognome FROM argument INNER JOIN user on user_id = user.id WHERE eventi_id = $eventId ORDER by argument.id DESC LIMIT $offset, 6";
         return $this->db->query($sql);
+    }
+
+    public function countViewEventPages($eventId) {
+        $sql = "SELECT count(*) as allAnswer_amount FROM argument WHERE eventi_id = $eventId";
+        return intval($this->db->query($sql)[0]['allAnswer_amount']) / 12;
     }
 
     public function deleteComment($id)
