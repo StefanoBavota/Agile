@@ -16,17 +16,31 @@ $eventMgr = new Event();
 $emailUsm = new UserManager();
 global $alertMsg;
 
+//paginazione
+$pagination = 0;
+if (isset($_GET['pagination'])) {
+    $pagination = intval($_GET['pagination']);
+}
+//end
 
 $userId = $loggedInUser->id;
 
 $email = $emailUsm->getEmailById($userId)[0]['email'];
 
-$historicEvent = $eventMgr->getCurrentHistoricEvent($email);
+$historicEvent = $eventMgr->getCurrentHistoricEvent($email, $pagination);
 
+//paginazione
+$pagesNumber = $eventMgr->countHistoricPages($email);
+$pagesNumbersList = array();
+for($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
+    array_push($pagesNumbersList, $pageNumber);
+}
+//end
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
 
 echo $twig->render('historicEvent.html', [
-    'historicEvent' => $historicEvent
+    'historicEvent' => $historicEvent,
+    'pagesNumber' => $pagesNumbersList
 ]);

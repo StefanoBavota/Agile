@@ -78,7 +78,7 @@ class UserManager extends DBManager
 		$sql = "SELECT email FROM user WHERE id = $userId";
 		return $this->db->query($sql);
 	}
-	
+
 	public function updateUser($userId, $nome, $cognome, $email, $musicType)
 	{
 		$sql = "UPDATE user SET nome = '$nome', cognome = '$cognome', email = '$email', music_type_id = $musicType WHERE id = $userId";
@@ -91,11 +91,23 @@ class UserManager extends DBManager
 		return $this->db->execute($sql);
 	}
 
-	public function getAllUser()
+	/*public function getAllUser()
 	{
 		$sql = "SELECT * FROM user";
 		return $this->db->query($sql);
-	}
+	}*/
+	public function getAllUser($paginated)
+    {
+        $offset = 12 * $paginated;
+        $sql = "SELECT * FROM user OFFSETT LIMIT $offset, 12";
+        return $this->db->query($sql);
+    }
+
+	//aggiunti
+    public function countAdminPages() {
+        $sql = "SELECT count(*) as user_amount FROM user";
+        return intval($this->db->query($sql)[0]['user_amount']) / 12;
+    }
 
 	public function getMusicTypeById($userId)
     {

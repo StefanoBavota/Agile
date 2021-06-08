@@ -34,7 +34,7 @@ class FavoritesTest extends TestCase
         $eventMgr->createEvent($event['img'], $event['name'], $event['description'], $event['data'], $event['posti'], $event['user_id'], $event['music_type_id']);
 
         $eventMgr->addToFavoriteList(1, $user['user_id']);
-        $favEvent = $eventMgr->getCurrentUserFavorites($user['user_id'])[0];
+        $favEvent = $eventMgr->getCurrentUserFavorites($user['user_id'], 0)[0];
 
         unset($favEvent['id']);
         unset($favEvent['eventi_id']);

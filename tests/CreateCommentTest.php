@@ -36,7 +36,7 @@ class CreateCommentTest extends TestCase
 
         $comment = ['answer' => 'ciao', 'eventi_id' => "1", 'user_id' => $user['id'], 'nome' => 'Mario', 'cognome' => 'Rossi'];
         $eventMgr->addComment($comment['answer'], $comment['eventi_id'], $comment['user_id']);
-        $dbComment = $eventMgr->getCommentByEventId($comment['eventi_id'])[0];
+        $dbComment = $eventMgr->getCommentByEventId($comment['eventi_id'], 0)[0];
 
         unset($dbComment['answer_id']);
         $this->assertEquals($comment, $dbComment);

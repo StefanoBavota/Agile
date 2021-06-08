@@ -37,6 +37,18 @@
 	<button class="btn btn-primary mb-5 mt-3" type="submit" name="comment">Commenta</button>
 </form>
 
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		{% for pageNumber in pagesNumber %}
+		<li class="page-item">
+			<a class="btn btn-primary ml-1 mt-2" role="button" href="../{{ ROOT_URL }}user?page=viewEvent&id={{ eventId }}&pagination={{pageNumber}}">
+				{{ pageNumber + 1 }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</nav>
+
 {% if allAnswer %}
 {% for answers in allAnswer %}
 
@@ -66,3 +78,15 @@
 {% endif %}
 
 {% endif %}
+
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		{% for pageNumber in pagesNumber %}
+		<li class="page-item">
+			<a class="btn btn-primary ml-1 mt-2" role="button" href="../{{ ROOT_URL }}user?page=viewEvent&id={{ event.id }}&pagination={{pageNumber}}">
+				{{ pageNumber + 1 }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</nav>

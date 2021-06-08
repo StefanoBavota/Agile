@@ -46,6 +46,13 @@ if (isset($_POST['register'])) {
     }
 }
 
+//paginazione
+$pagination = 0;
+if (isset($_GET['pagination'])) {
+    $pagination = intval($_GET['pagination']);
+}
+//end
+
 if (isset($_POST['comment'])) {
     $answer = htmlspecialchars(trim($_POST['answer']));
 
@@ -58,7 +65,15 @@ if (isset($_POST['remove'])) {
     $eventMgr->deleteComment($answerId);
 }
 
-$allAnswer = $eventMgr->getCommentByEventId($eventId);
+$allAnswer = $eventMgr->getCommentByEventId($eventId, $pagination);
+
+//paginazione
+$pagesNumber = $eventMgr->countViewEventPages($eventId);
+$pagesNumbersList = array();
+for($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
+    array_push($pagesNumbersList, $pageNumber);
+}
+//end
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
@@ -66,5 +81,7 @@ $twig = new \Twig\Environment($loader, []);
 echo $twig->render('viewEvent.html', [
     'event' => $event,
     'loggedInUser' => $loggedInUser,
-    'allAnswer' => $allAnswer
+    'allAnswer' => $allAnswer,
+    'pagesNumber' => $pagesNumbersList,
+    'eventId' => $eventId
 ]);

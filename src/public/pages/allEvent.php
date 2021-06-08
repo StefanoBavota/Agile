@@ -13,6 +13,7 @@ $variabile = 1;
 $eventMgr = new Event();
 $errMsg = '';
 
+
 $pagination = 0;
 if (isset($_GET['pagination'])) {
     $pagination = intval($_GET['pagination']);
