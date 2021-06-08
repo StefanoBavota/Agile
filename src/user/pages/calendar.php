@@ -16,8 +16,10 @@ $eventMgr = new Event();
 $emailUsm = new UserManager();
 global $alertMsg;
 
+
 $userId = $loggedInUser->id;
 $email = $emailUsm->getEmailById($userId)[0]['email'];
+
 $calendarEvent = $eventMgr->getCurrentRegisterEvent($email);
 
 if (isset($_POST['filtra'])) {

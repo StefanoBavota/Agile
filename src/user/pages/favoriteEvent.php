@@ -17,8 +17,6 @@ $pagination = 0;
 if (isset($_GET['pagination'])) {
     $pagination = intval($_GET['pagination']);
 }
-
-//$events = $eventMgr->getEventHomepagePaginated($pagination);
 //end
 
 if (isset($_POST['remove_fav'])) {

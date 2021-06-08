@@ -33,7 +33,6 @@ if (isset($_POST['addToFavourite'])) {
 }
 
 //paginazione
-//funzione che
 $pagesNumber = $eventMgr->countEventHomepagePages();
 $pagesNumbersList = array();
 for($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
