@@ -30,7 +30,7 @@ if (isset($_POST['remove'])) {
 $events = $eventMgr->eventByUserId($userId, $pagination);
 
 //paginazione
-$pagesNumber = $eventMgr->countEventPages();
+$pagesNumber = $eventMgr->countEventPages($userId);
 $pagesNumbersList = array();
 for($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
     array_push($pagesNumbersList, $pageNumber);

@@ -68,7 +68,7 @@ if (isset($_POST['remove'])) {
 $allAnswer = $eventMgr->getCommentByEventId($eventId, $pagination);
 
 //paginazione
-$pagesNumber = $eventMgr->countViewEventPages();
+$pagesNumber = $eventMgr->countViewEventPages($eventId);
 $pagesNumbersList = array();
 for($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
     array_push($pagesNumbersList, $pageNumber);
@@ -82,5 +82,6 @@ echo $twig->render('viewEvent.html', [
     'event' => $event,
     'loggedInUser' => $loggedInUser,
     'allAnswer' => $allAnswer,
-    'pagesNumber' => $pagesNumbersList
+    'pagesNumber' => $pagesNumbersList,
+    'eventId' => $eventId
 ]);

@@ -26,6 +26,13 @@ class Event extends DBManager
         return $this->db->query($sql);
     }
 
+    //aggiunti (eventByUserId)
+    public function countEventPages($userId)
+    {
+        $sql = "SELECT count(*) as events_amount FROM eventi WHERE user_id = $userId";
+        return intval($this->db->query($sql)[0]['events_amount']) / 12;
+    }
+
     public function deleteEvent($id)
     {
         $sql = "DELETE FROM eventi WHERE id = $id";
@@ -81,24 +88,10 @@ class Event extends DBManager
         return intval($this->db->query($sql)[0]['events_amount']) / 12;
     }
     //aggiunti
-    public function countEventFavoritesPages() {
+    public function countEventFavoritesPages()
+    {
         $sql = "SELECT count(*) as favoriteEvent_amount FROM favorites";
         return intval($this->db->query($sql)[0]['favoriteEvent_amount']) / 12;
-    }
-    //aggiunti (getCurrentHistoricEvent)
-    public function countHistoricPages() {
-        $sql = "SELECT count(*) as historicEvent_amount FROM eventi";
-        return intval($this->db->query($sql)[0]['historicEvent_amount']) / 12;
-    }
-    //aggiunti (eventByUserId)
-    public function countEventPages() {
-        $sql = "SELECT count(*) as events_amount FROM eventi";
-        return intval($this->db->query($sql)[0]['events_amount']) / 12;
-    }
-    //aggiunti (getCommentByEventId)
-    public function countViewEventPages() {
-        $sql = "SELECT count(*) as allAnswer_amount FROM argument";
-        return intval($this->db->query($sql)[0]['allAnswer_amount']) / 12;
     }
 
     public function editEvent($id, $img, $name, $description, $data, $posti, $musicType)
@@ -180,8 +173,8 @@ class Event extends DBManager
     }*/
     public function getCommentByEventId($eventId, $paginated)
     {
-        $offset = 12 * $paginated;
-        $sql = "SELECT argument.id AS answer_id, answer, eventi_id, user_id, nome, cognome FROM argument INNER JOIN user on user_id = user.id WHERE eventi_id = $eventId ORDER by argument.id DESC LIMIT $offset, 12";
+        $offset = 6 * $paginated;
+        $sql = "SELECT argument.id AS answer_id, answer, eventi_id, user_id, nome, cognome FROM argument INNER JOIN user on user_id = user.id WHERE eventi_id = $eventId ORDER by argument.id DESC LIMIT $offset, 6";
         return $this->db->query($sql);
     }
 
@@ -207,6 +200,13 @@ class Event extends DBManager
         $offset = 12 * $paginated;
         $sql = "SELECT * FROM eventi INNER JOIN register ON register.eventi_id = eventi.id AND register.email = '$email' WHERE eventi.data < CURRENT_DATE ORDER by data LIMIT $offset, 12";
         return $this->db->query($sql);
+    }
+
+    //aggiunti (getCurrentHistoricEvent)
+    public function countHistoricPages($email)
+    {
+        $sql = "SELECT count(*) as historicEvent_amount FROM eventi INNER JOIN user ON user_id = user.id WHERE user.email = '$email' AND eventi.data < CURRENT_DATE ORDER by data";
+        return intval($this->db->query($sql)[0]['historicEvent_amount']) / 12;
     }
 
     public function getFeaturedEvents()

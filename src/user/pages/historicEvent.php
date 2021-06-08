@@ -30,7 +30,7 @@ $email = $emailUsm->getEmailById($userId)[0]['email'];
 $historicEvent = $eventMgr->getCurrentHistoricEvent($email, $pagination);
 
 //paginazione
-$pagesNumber = $eventMgr->countHistoricPages();
+$pagesNumber = $eventMgr->countHistoricPages($email);
 $pagesNumbersList = array();
 for($pageNumber = 0; $pageNumber < $pagesNumber; $pageNumber++) {
     array_push($pagesNumbersList, $pageNumber);
