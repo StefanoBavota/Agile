@@ -1,11 +1,12 @@
 <h2 class="mt-4">Storico eventi registrati</h2>
 <div class="row">
-    
+
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             {% for pageNumber in pagesNumber %}
             <li class="page-item">
-                <a class="btn btn-primary ml-1 mt-2" role="button" href="../{{ ROOT_URL }}user?page=historicEvent&pagination={{pageNumber}}">
+                <a class="btn btn-primary ml-1 mt-2" role="button"
+                    href="../{{ ROOT_URL }}user?page=historicEvent&pagination={{pageNumber}}">
                     {{ pageNumber + 1 }}
                 </a>
             </li>
@@ -26,15 +27,13 @@
     </div>
 
     {% endfor %}
-    {% else %}
-    <p>Nessun evento disponibile...</p>
-    {% endif %}
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             {% for pageNumber in pagesNumber %}
             <li class="page-item">
-                <a class="btn btn-primary ml-1 mt-2" role="button" href="../{{ ROOT_URL }}user?page=historicEvent&pagination={{pageNumber}}">
+                <a class="btn btn-primary ml-1 mt-2" role="button"
+                    href="../{{ ROOT_URL }}user?page=historicEvent&pagination={{pageNumber}}">
                     {{ pageNumber + 1 }}
                 </a>
             </li>
@@ -42,4 +41,7 @@
         </ul>
     </nav>
 
+    {% else %}
+    <p>Nessun evento disponibile...</p>
+    {% endif %}
 </div>
